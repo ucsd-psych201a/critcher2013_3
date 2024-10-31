@@ -1,0 +1,186 @@
+---
+title: "Replication of Study 'How Quick Decisions Illuminate Moral Character' by Critcher et al. (2013, Social Psychology and Personality Science)"
+author: "Asad Tariq (astariq@ucsd.edu)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    toc: true
+    toc_depth: 3
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+## Introduction
+
+This report presents our replication of the study "How Quick Decisions Illuminate Moral Character" conducted by Critcher, Inbar, and Pizarro (2013), which examined the effect of decision speed on judgments of moral character. The original study found that individuals who made quick moral decisions were evaluated more positively, whereas those who made quick immoral decisions were judged more harshly. In contrast, slower decisions, whether moral or immoral, led to more moderate evaluations of character. The authors proposed that quick decisions are seen as more certain and, therefore, more revealing of the decision maker’s underlying motives.
+
+The original study employed two experiments. The first involved participants evaluating two individuals’ moral character, one who made a quick decision and another who took longer to decide, in both ethical and unethical contexts. The second experiment explored a similar structure but focused on more complex moral dilemmas. Both experiments consistently showed that quick decisions amplified moral evaluations, with quick moral decisions being judged more favorably and quick immoral decisions being judged more harshly.
+
+Our replication aims to reproduce the findings of the first experiment by closely following the original methodology. Specifically, we focused on testing whether decision speed continues to amplify moral character judgments, with quick decisions leading to more polarized evaluations compared to slower ones. This replication project is part of a broader effort to assess the robustness of psychological research through reproducibility studies.
+
+## Methods
+
+### Power Analysis
+
+<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size. -->
+
+### Planned Sample
+
+<!-- Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any. -->
+
+For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+
+### Materials
+
+<!-- All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article. -->
+
+All the materials for this replication study comes from the original study, "How Quick Decisions Illuminate Moral Character", conducted by Critcher, Inbar, and Pizarro (2013)
+
+#### Scenario: 
+
+There will be two groups assigned to one of the two conditions: the moral and immoral ones. Each of the conditions has two agents as subjects, who differ based on the quickness of their decision. 
+
+- For the moral condition, on different occasions, Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to return the wallet to customer service instead of stealing the money. Nate makes the same decision, but he reaches his conclusion after spending a long time thinking about it. 
+- For the immoral condition: Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to take the money and drive away. Nate reaches the same conclusion, but he takes a long time before deciding to act. 
+
+#### Questionnaire: 
+
+Following the scale below, answer the following questions based on how much you agree with them on a scale from 1 to 7.  
+</br>
+1: Not at all
+</br>
+2: Not very
+</br>
+3: Slightly
+</br>
+4: Moderately
+</br>
+5: Quite
+</br>
+6: Very
+</br>
+7: Extremely 
+
+##### Quickness:
+
+Justin made his decision quickly.  
+Nate made his decision quickly. 
+
+##### Moral character evaluation: 
+Justin has entirely good principles.  
+Nate has entirely good principles.
+
+Justin has entirely good moral standards.  
+Nate has entirely good moral standards. 
+
+Deep down, Justin has the moral principles and knowledge to do the right thing.  
+Deep down, Nate has the moral principles and knowledge to do the right thing. 
+
+
+##### Certainty:
+
+Justin was conflicted in his decision.  
+Nate was conflicted in his decision. 
+
+Justin had reservations about his decision.  
+Nate had reservations about his decision. 
+
+Justin was quite certain in his decision.  
+Nate was quite certain in his decision. 
+
+Justin was far from choosing the alternate course of action.  
+Nate was far from choosing the alternate course of action. 
+
+
+##### Emotional impulsivity:
+
+Justin remained calm and emotionally contained.  
+Nate remained calm and emotionally contained. 
+
+Justin became upset and acted without thinking.  
+Nate became upset and acted without thinking.
+
+### Procedure	
+
+As in the original experiment (Critcher et al., 2013), the reproduction will follow the following procedure; "Participants read about both Justin and Nate, two men who each independently came upon two separate cash-filled wallets in the parking lot of a local grocery store. Justin "was able to decide quickly" what to do. Nate "was only able to decide after long and careful deliberation." Participants assigned to the moral condition learned both men "did not steal the money but instead left the wallet with customer service."  Those in the immoral condition learned instead that both men ‘‘pocketed the money and drove off"" 
+
+Following the procedures outlined by Critcher et al. (2013), after the reading the scenario of Justin and Nate’s actions, participants need to fill four Likert scale assessments scaled from 1 to 7. The first one concerns the quickness with which the actors took the decision (manipulation check). In the second one, participants will need to assess Justin and Nate’s morality: "has entirely good (vs. entirely bad) moral principles," "has good (vs. bad) moral standards," and "deep down has the moral principles and knowledge to do the right thing." The third one will have four items on the questionnaire assessing level of certainty the actors had in making their decision(“how conflicted [each] felt when making his decision (...), how many reservations [each] had (...), was quite certain in his decision (...), how far [each] was from choosing the alternate course of action”). The fourth assessment evaluates the perceived emotional impulsivity of the actors whether “calm and emotionally contained” or "upset and acted without thinking”.
+
+### Analysis Plan
+
+<!-- Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.   -->
+
+<!-- **Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do. -->
+
+First, we will randomly assign each participant to one of the conditions for both factors (moral condition and decision speed) and record these assignments for group mean comparisons. Moral character evaluation, certainty, and emotional impulsivity scores will be rated using the Likert scales. Any reverse-scored items in the questionnaires will be re-scaled accordingly, and we will compute the mean score across items for each variable. A 2(moral condition) x2 (decision speed) ANOVA test will be conducted to compare group means for the moral character evaluation, examining main and interaction effects of both factors. Similarly, we will analyze perceived certainty and emotional impulsivity as covariates, assessing how participants’ perceptions of these traits vary with decision speed.
+
+### Differences from Original Study
+
+<!-- Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. -->
+
+The difference from the original study would be the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online. In addition, this replication will only replicate the experiment 1 of the original study.
+
+### Methods Addendum (Post Data Collection)
+
+<!-- You can comment this section out prior to final report with data collection. -->
+
+#### Actual Sample
+  <!-- Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
+
+For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+
+**(note: since we haven't done data collection yet, our planned and acutal sample are the same)**
+
+#### Differences from pre-data collection methods plan
+
+There are no differences in the pre-data collection methods between this replication study and the original study.
+
+
+## Results
+
+
+### Data preparation
+
+<!-- Data preparation following the analysis plan. -->
+
+ 
+Our replication of Experiment 1 will closely mirror the original study’s 2x2 factorial design, manipulating moral condition (stealing vs. not stealing) and decision speed (quick vs. slow). The dependent variable will be the moral character evaluation, assessed using a Likert scale. As in the original study, this replication will also examine perceived certainty and emotional impulsivity of the actor in the scenario as covariates. The questionnaire items for the covariates will also be so assessed using a Likert scale.
+
+	
+```{r include=F}
+### Data Preparation
+
+#### Load Relevant Libraries and Functions
+
+#### Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Confirmatory analysis
+
+<!-- The analyses as specified in the analysis plan.   -->
+
+<!-- *Side-by-side graph with original graph is ideal here* -->
+
+Since the objective of this replication study is to closely mirror the original methodology, the statistical analysis will replicate the 2x2 ANOVA test used in the original study. This approach allows for direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction, within a consistent analytical framework.
+
+The 2x2 ANOVA is particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. Additionally, using the same statistical test enhances the comparability of our findings with those of the original study, ensuring any differences in results can be attributed more confidently to sample or context rather than methodological inconsistencies.
+
+While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study. 
+
+### Exploratory analyses
+
+<!-- Any follow-up analyses desired (not required).   -->
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
