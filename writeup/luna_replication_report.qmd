@@ -1,6 +1,6 @@
 ---
 title: "Replication of Study 'How Quick Decisions Illuminate Moral Character' by Critcher et al. (2013, Social Psychology and Personality Science)"
-author: "Asad Tariq (astariq@ucsd.edu)"
+author: "Luna Bellitto (lbellitto@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
