@@ -8,7 +8,6 @@ format:
     toc_depth: 3
 ---
 
-<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
 ## Introduction
 
@@ -18,6 +17,7 @@ The original study employed two experiments. The first involved participants eva
 
 Our replication aims to reproduce the findings of the first experiment by closely following the original methodology. Specifically, we focused on testing whether decision speed continues to amplify moral character judgments, with quick decisions leading to more polarized evaluations compared to slower ones. This replication project is part of a broader effort to assess the robustness of psychological research through reproducibility studies.
 
+
 ## Methods
 
 ### Power Analysis
@@ -25,8 +25,6 @@ Our replication aims to reproduce the findings of the first experiment by closel
 <!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size. -->
 
 ### Planned Sample
-
-<!-- Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any. -->
 
 For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
 
@@ -106,6 +104,44 @@ As in the original experiment (Critcher et al., 2013), the reproduction will fol
 
 Following the procedures outlined by Critcher et al. (2013), after the reading the scenario of Justin and Nate’s actions, participants need to fill four Likert scale assessments scaled from 1 to 7. The first one concerns the quickness with which the actors took the decision (manipulation check). In the second one, participants will need to assess Justin and Nate’s morality: "has entirely good (vs. entirely bad) moral principles," "has good (vs. bad) moral standards," and "deep down has the moral principles and knowledge to do the right thing." The third one will have four items on the questionnaire assessing level of certainty the actors had in making their decision(“how conflicted [each] felt when making his decision (...), how many reservations [each] had (...), was quite certain in his decision (...), how far [each] was from choosing the alternate course of action”). The fourth assessment evaluates the perceived emotional impulsivity of the actors whether “calm and emotionally contained” or "upset and acted without thinking”.
 
+### Design Overview
+
+#### Factors 
+
+In this replication study, two factors were manipulated: the participants were randomly assigned to a type of decision (moral vs. immoral), and following that, they were exposed to both scenarios where one of the actors made the moral or immoral decision quickly and another where the other made the decision slowly. 
+
+#### Primary Measures
+
+Four primary measures were taken from participants:
+
+1. Quickness of Decision: A manipulation check to assess participants' perceptions of how quickly Justin and Nate made their decisions.   
+2. Moral Character Evaluation: Participants rated each agent's moral principles and standards, with items like “has entirely good (vs. entirely bad) moral principles.”   
+3. Certainty: Four items assessed participants' perceptions of each agent's certainty in their decision (e.g., “how conflicted \[each\] felt when making his decision”).  
+4. Emotional Impulsivity: Two items assessed perceptions of each agent’s emotional impulsivity, such as “calm and emotionally contained” vs. “became upset and acted without thinking.”
+
+#### Mixed Design 
+
+The replication study will reflect the original study’s mixed design. 
+
+- Between-Subjects Factor:    
+  - Moral Condition (moral vs. immoral): Participants were randomly assigned to either the moral condition (where both characters return the wallet) or the immoral condition (where both characters keep the wallet). Each participant experiences only one of these conditions, making this factor between-subjects.
+
+-  Within-Subjects Factor:  
+  - Decision Speed (quick vs. deliberative): Each participant evaluated both Justin (quick decision) and Nate (deliberative decision). Since every participant observes and evaluates both types of decision speeds, this factor is within-subjects.
+
+#### Impact of Switching Between- and Within-Subjects Designs
+
+Although this replication followed the original study’s mixed design, switching both factors (decision and speed) to either a fully within-subjects or fully between-subjects design is a possible choice. 
+
+A fully within-subjects design could increase statistical power and require fewer participants, as each person would experience all combinations of conditions (quick/slow and moral/immoral). This design reduces variability due to individual differences, making it easier to detect effects. However, it could also risk carryover effects, where experiencing one condition might influence responses in the next, potentially producing biased results. Additionally, participants may guess the study’s purpose and alter their responses to appear consistent or meet the experiment’s expectations.
+
+In contrast, in a fully between-subjects design, each participant would experience only one combination of decision speed and moral condition, requiring a larger sample size to achieve reliable effects. With only one condition per participant, variability due to individual differences is higher, which reduces statistical power and sensitivity to detect effects. However, this design minimizes potential biases, such as carryover effects and demand characteristics, as participants encounter only one scenario. 
+
+#### Potential Confounding Variables 
+
+Potential confounding variables in this study include but are not limited to participants’ own biases and preconceptions about the decision-making process, which can manifest as personal perceptions of quick versus slow decisions and overall moral judgments. Another important confound relates to preconceptions about men’s moral character, as both characters in the scenario are male, and participants may carry implicit gender biases that influence their evaluations. Additionally, cultural perspectives, participants’ emotional states and contexts, as well as the moral complexity of the scenarios, may further impact these judgments.
+
+
 ### Analysis Plan
 
 <!-- Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.   -->
@@ -116,16 +152,13 @@ First, we will randomly assign each participant to one of the conditions for bot
 
 ### Differences from Original Study
 
-<!-- Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. -->
-
 The difference from the original study would be the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online. In addition, this replication will only replicate the experiment 1 of the original study.
 
 ### Methods Addendum (Post Data Collection)
 
-<!-- You can comment this section out prior to final report with data collection. -->
 
 #### Actual Sample
-  <!-- Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
+
 
 For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
 
@@ -160,10 +193,6 @@ Our replication of Experiment 1 will closely mirror the original study’s 2x2 f
 ```
 
 ### Confirmatory analysis
-
-<!-- The analyses as specified in the analysis plan.   -->
-
-<!-- *Side-by-side graph with original graph is ideal here* -->
 
 Since the objective of this replication study is to closely mirror the original methodology, the statistical analysis will replicate the 2x2 ANOVA test used in the original study. This approach allows for direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction, within a consistent analytical framework.
 
