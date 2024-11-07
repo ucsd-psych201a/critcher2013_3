@@ -1,0 +1,80 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Page Container */
+#welcome_pg, #instruction_pg, #trial {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome page styling */
+.welcome p {
+    font-size: 1.2em;
+    text-align: center;
+    color: #555;
+}
+
+/* Instruction styling */
+.instruction p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Trial scenario styling */
+.scenario p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Moral condition styling */
+.moral_cond {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-left: 5px solid #00796b;
+    border-radius: 4px;
+}
+
+/* Continue instruction styling */
+.scenario p:last-of-type {
+    font-weight: bold;
+    color: #00796b;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Button styling */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #00796b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
