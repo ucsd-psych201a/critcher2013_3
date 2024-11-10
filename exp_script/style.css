@@ -1,80 +1,70 @@
-/* General body styling */
+/* style.css */
+
+/* General styling for the entire document */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+    margin: 0;
+  }
+  
+  /* Styling for all experiment sections */
+  #welcome_pg,
+  #instruction_pg,
+  #trial {
+    text-align: left; /* Left-aligns the text in scenarios */
+    padding: 100px;
+    width: 800px;
+  }
+  
 
-/* Page Container */
-#welcome_pg, #instruction_pg, #trial {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
+  
+  /* Fixed preamble styling */
+  .jspsych-survey-likert-preamble {
+    text: bold;
+    position: sticky;
+    top: 0;
+    background-color: white;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    z-index: 1;
+    border-bottom: 1px solid #ccc; /* Optional divider */
+  }
+  
 
-/* Welcome page styling */
-.welcome p {
-    font-size: 1.2em;
-    text-align: center;
-    color: #555;
-}
+  
 
-/* Instruction styling */
-.instruction p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #444;
-}
-
-/* Trial scenario styling */
-.scenario p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Moral condition styling */
-.moral_cond {
-    margin: 15px 0;
-    padding: 10px;
-    background-color: #e0f7fa;
-    border-left: 5px solid #00796b;
-    border-radius: 4px;
-}
-
-/* Continue instruction styling */
-.scenario p:last-of-type {
-    font-weight: bold;
-    color: #00796b;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Button styling */
-button {
-    display: block;
-    margin: 20px auto;
+  /* Style for the "Continue" button */
+.jspsych-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
     padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #00796b;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  /* Button hover effect */
+  .jspsych-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
 
-button:hover {
-    background-color: #004d40;
-}
+
+
+/* Compact container for each question and Likert scale */
+.question-container {
+    max-width: 750px; /* Fixed width to keep questions consistent */
+    padding: 20px; /* Reduced padding to make it more compact */
+    margin: 0 auto 10px auto; /* Center the container with minimal space below each */
+    font-size: 16px; /* Slightly smaller font size */
+    line-height: 1.4; /* Reduced line height for compactness */
+  }
+  
+  /* Compact Likert scale options */
+  .jspsych-survey-likert-option {
+    display: inline-block;
+    width: 30px; /* Reduced width for each option */
+    text-align: center;
+    margin: 0 2px; /* Minimal spacing between options */
+  }
+  
