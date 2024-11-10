@@ -9,9 +9,9 @@
     <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  
+
   <body></body>
-  
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Initialize jsPsych
@@ -108,13 +108,13 @@
         }));
 
         // Customize preamble based on the name and condition
-        const preamble = condition === "moral" 
+        const preamble = condition === "moral"
           ? `<div id="m_${name.toLowerCase()}" class="moral_cond"><p>${name} saw his decision as ${
-              name === "Justin" ? "an easy one and decided quickly, opting to leave the wallet with Customer Service." 
+              name === "Justin" ? "an easy one and decided quickly, opting to leave the wallet with Customer Service."
                                 : "a difficult one, deliberating for a while before deciding to leave the wallet with Customer Service."
             }</p></div>`
           : `<div id="im_${name.toLowerCase()}" class="immoral_cond"><p>${name} saw his decision as ${
-              name === "Justin" ? "an easy one, quickly deciding to pocket the money and drive off." 
+              name === "Justin" ? "an easy one, quickly deciding to pocket the money and drive off."
                                 : "a difficult one, but after some thought, he also chose to pocket the money and drive off."
             }</p></div>`;
 
@@ -131,7 +131,8 @@
       const justin_questions = createQuestionnaire("Justin", condition);
       const nate_questions = createQuestionnaire("Nate", condition);
 
-    
+      // Randomize the order of Justin's and Nate's questions
+      const randomized_questions = jsPsych.randomization.shuffle([justin_questions, nate_questions]);
 
       // End message
       const end_message = {
@@ -155,7 +156,7 @@
       };
 
       // Timeline for the experiment
-      const timeline = [consent, instructions, trial_scenario, justin_questions, nate_questions, end_message, save_data];
+      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message, save_data];
 
       // Run the experiment
       console.log("Starting experiment with timeline:", timeline);
