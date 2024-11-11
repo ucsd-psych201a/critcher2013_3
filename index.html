@@ -95,7 +95,7 @@
         action: "save",
         experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
         filename: filename,
-        data_string: () => JSON.stringify(responseData)
+        data_string: () => jsPsych.data.get().csv()
       };
 
       // Experiment timeline
