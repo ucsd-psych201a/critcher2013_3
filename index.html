@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/jspsych@8.0.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+
+    <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body></body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Initialize jsPsych
+      const jsPsych = initJsPsych();
+
+      // Randomly assign participant to a condition and log it
+      const condition = Math.random() < 0.5 ? "moral" : "immoral";
+      console.log("Assigned condition:", condition);
+
+      // Consent page
+      const consent = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+          <div id='welcome_pg' class='welcome'>
+            <h2 style="font-size: 24pt;"><strong>Welcome to the study!</strong></h2>
+            <h3 style="font-size: 20pt;"><strong>Consent Form</strong></h3>
+            <p>In this study, you will read scenarios and answer questions about moral decisions.</p>
+            <p>You are being invited to participate in a research experiment titled "Replication of Study: How Quick Decisions Illuminate Moral Character". This study is being conducted by Dr. Bria Long from UC San Diego and associated graduate students in the Statistical Computing and Inference Data course.<p>
+            <p>The purpose of this study is to better understand how the speed of decision making can illuminate moral character. You will be asked to read scenarios and answer questions about moral decisions. The study will take approximately 15-25 minutes to complete.</p>
+            <p>Your participation in this study is completely voluntary, and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled.<p>
+            <p>Your responses will be kept confidential and we will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g., Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.</p>
+            <p>If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Dr. Bria Long, at <a href="mailto:brlong@ucsd.edu">brlong@ucsd.edu</a>. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at <a href="mailto:irb@ucsd.edu">irb@ucsd.edu</a> or 858-246-4777.</p>
+            <p>By participating in this research, you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p>
+            <p><strong>Press any key to confirm consent and continue.<strong></p>
+          </div>
+        `,
+        on_finish: () => console.log("Consent page completed")
+      };
+
+      // Instructions page
+      const instructions = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+          <div id='instruction_pg' class='instruction'>
+            <h3 style="font-size: 24pt"><strong>Experiment Instructions</strong></h3>
+            <p>In this study, you will read scenarios and answer questions about moral decisions. You will be presented with a scenario involving two individuals, Justin and Nate, who each find a wallet with money in a parking lot. You will be asked to answer questions about their decision-making process.</p>
+            <p>After reading the scenario, you will be asked to answer a series of questions about each individual's decision-making process. Please answer the questions based on the information provided in the scenario.</p>
+            <p>There are no right or wrong answers, so please answer honestly based on your own opinions and beliefs.</p>
+            <p><strong>Press any key to continue to the scenarios.<strong></p>
+          </div>
+        `,
+        on_finish: () => console.log("Instructions page completed")
+      };
+
+      // Trial (scenario) based on condition
+      const trial_scenario = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+          <div id='trial'>
+            <p style="font-size: 17pt"><strong>Please read the following scenario carefully.</strong></p>
+
+            <div id='general' class='scenario'>
+              <p>Justin and Nate were walking to separate cars in the parking lot of Andronico's, a local grocery store, when they each spotted a different lost wallet next to their cars. Upon picking up the wallet and looking inside, each found several hundred dollars in cash. Each man considered whether he should return the wallet and money to the Customer Service desk at Andronico's or pocket the money and drive away.</p>
+            </div>
+            ${
+              condition === "moral"
+                ? `<div id='moral_trial'>
+                    <div id='m_justin' class='moral_cond'>
+                      <p>Justin saw his decision as an easy one and was able to decide quickly. He did not steal the money and instead left the wallet with Customer Service.</p>
+                    </div>
+                    <div id='m_nate' class='moral_cond'>
+                      <p>In contrast, Nate saw his decision as difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided not to steal the money and instead left the wallet with Customer Service.</p>
+                    </div>
+                  </div>`
+                : `<div id='immoral_trial'>
+                    <div id='im_justin' class='immoral_cond'>
+                      <p>Justin saw his decision as an easy one and was able to decide quickly. He pocketed the money and drove off.</p>
+                    </div>
+                    <div id='im_nate' class='immoral_cond'>
+                      <p>In contrast, Nate saw his decision as difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided to pocket the money and drive off.</p>
+                    </div>
+                  </div>`
+            }
+            <p><strong>Press any key to continue to the questionnaires.<strong></p>
+          </div>
+        `,
+        on_finish: () => console.log("Trial scenario for", condition, "condition completed")
+      };
+
+
+      // Define the template questions with [name] as a placeholder
+      const questionTemplates = [
+        "Did [name] make his decision quickly or slowly? (1 = particularly slowly, 7 = particularly quickly)",
+        "Regardless of [name]'s decision, does it sound like [name] has underlying moral principles that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)",
+        "Regardless of [name]'s decision, do you think [name] has moral standards that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)",
+        "Regardless of [name]'s decision, do you think [name] possesses the moral knowledge and principles necessary to do 'the right thing'? (1 = not at all, 4 = somewhat, 7 = completely)",
+        "Would you say [name] was quite certain in his decision, or did [name] have hesitations about his decision? (1 = completely certain, 7 = considerable hesitations)",
+        "How close do you think [name] was to choosing the alternate course of action? (1 = very close to, 7 = not close at all)",
+        "How conflicted do you think [name] felt in making the decision? (1 = very conflicted, 7 = not at all conflicted)",
+        "Based on the information provided, do you think [name] had many reservations about the decision? (1 = none at all, 7 = a whole lot)",
+        "Do you think [name] was calm and emotionally contained while making the decision? (1 = not at all, 7 = entirely so)",
+        "To what extent do you think [name] became upset and acted without thinking? (1 = not at all, 7 = entirely so)"
+      ];
+
+      // Function to create a questionnaire for a person with consistent Likert scale labels
+      function createQuestionnaire(name, condition) {
+        const labels = ["1", "2", "3", "4", "5", "6", "7"]; // Uniform labels for all questions
+
+        // Map each question template, replacing [name] with the actual name
+        const questions = questionTemplates.map(prompt => ({
+          prompt: `<div class="question-container">${prompt.replace(/\[name\]/g, name)}</div>`,
+          labels: labels,
+          required: true
+        }));
+
+        // Customize preamble based on the name and condition
+        const preamble = condition === "moral"
+          ? `<div id="m_${name.toLowerCase()}" class="moral_cond"><p>${name} saw his decision as ${
+              name === "Justin" ? "an easy one and decided quickly, opting to leave the wallet with Customer Service."
+                                : "a difficult one, deliberating for a while before deciding to leave the wallet with Customer Service."
+            }</p></div>`
+          : `<div id="im_${name.toLowerCase()}" class="immoral_cond"><p>${name} saw his decision as ${
+              name === "Justin" ? "an easy one, quickly deciding to pocket the money and drive off."
+                                : "a difficult one, but after some thought, he also chose to pocket the money and drive off."
+            }</p></div>`;
+
+        // Return the questionnaire object with the consistent scale labels
+        return {
+          type: jsPsychSurveyLikert,
+          questions: questions,
+          preamble: preamble,
+          on_finish: (data) => console.log(`${name}'s questionnaire responses:`, data.response)
+        };
+      }
+
+      // Create questionnaire objects for Justin and Nate
+      const justin_questions = createQuestionnaire("Justin", condition);
+      const nate_questions = createQuestionnaire("Nate", condition);
+
+      // Randomize the order of Justin's and Nate's questions
+      const randomized_questions = jsPsych.randomization.shuffle([justin_questions, nate_questions]);
+
+      // End message
+      const end_message = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<p>Thank you for participating in the study!</p><p>Press any key to finish.</p>",
+        on_finish: () => console.log("End of experiment")
+      };
+
+
+      // Create the unique filename using a subject ID
+      const subject_id = jsPsych.randomization.randomID(10);
+      const filename = `${subject_id}.csv`;
+
+      // Save data configuration
+      const save_data = {
+        type: jsPsychPipe,
+        action: "save",
+        experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
+        filename: filename,
+        data_string: () => jsPsych.data.get().csv()
+      };
+
+      // Timeline for the experiment
+      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message, save_data];
+
+      // Run the experiment
+      console.log("Starting experiment with timeline:", timeline);
+      jsPsych.run(timeline);
+
+    });
+  </script>
+</html>
