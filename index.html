@@ -4,6 +4,7 @@
     <script src="https://unpkg.com/jspsych@8.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
 
     <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -16,152 +17,89 @@
       // Initialize jsPsych
       const jsPsych = initJsPsych();
 
-      // Randomly assign participant to a condition and log it
-      const condition = Math.random() < 0.5 ? "moral" : "immoral";
+      // Generate unique subject ID and assign a condition
       const subject_id = jsPsych.randomization.randomID(10);
+      const condition = Math.random() < 0.5 ? "moral" : "immoral";
 
-      // Define response storage object, including character order
+      // Initialize responseData object
       const responseData = {
         subject_id: subject_id,
         condition: condition,
-        character_order: "", // This will be set based on randomized order
-        justin: {}, // Store Justin's responses here
-        nate: {}    // Store Nate's responses here
+        character_order: "", // Set based on randomized order
+        justin: {}, // Justin's responses
+        nate: {}    // Nate's responses
       };
 
       // Consent page
       const consent = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `
-          <div id='welcome_pg' class='welcome'>
-            <h2><strong>Welcome to the study!</strong></h2>
-            <h3><strong>Consent Form</strong></h3>
-            <p>In this study, you will read scenarios and answer questions about moral decisions.</p>
-            <p><strong>Press any key to confirm consent and continue.</strong></p>
-          </div>
-        `,
+        stimulus: `<div><h2>Consent Form</h2><p>Consent information here...</p><p>Press any key to confirm consent and continue.</p></div>`
       };
 
       // Instructions page
       const instructions = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `
-          <div id='instruction_pg' class='instruction'>
-            <h3><strong>Experiment Instructions</strong></h3>
-            <p>In this study, you will read scenarios and answer questions about moral decisions.</p>
-            <p><strong>Press any key to continue to the scenarios.</strong></p>
-          </div>
-        `,
+        stimulus: `<div><h3>Experiment Instructions</h3><p>Instructions go here.</p><p>Press any key to continue to the scenarios.</p></div>`
       };
 
       // Trial (scenario) based on condition
       const trial_scenario = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `
-          <div id='trial'>
-            <p><strong>Please read the following scenario carefully.</strong></p>
-            <div id='general' class='scenario'>
-              <p>Justin and Nate were walking to separate cars in the parking lot...</p>
-            </div>
-            ${
-              condition === "moral"
-                ? `<div id='moral_trial'>
-                    <div id='m_justin' class='moral_cond'>
-                      <p>Justin saw his decision as an easy one and was able to decide quickly. He did not steal the money and instead left the wallet with Customer Service.</p>
-                    </div>
-                    <div id='m_nate' class='moral_cond'>
-                      <p>In contrast, Nate saw his decision as difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided not to steal the money and instead left the wallet with Customer Service.</p>
-                    </div>
-                  </div>`
-                : `<div id='immoral_trial'>
-                    <div id='im_justin' class='immoral_cond'>
-                      <p>Justin saw his decision as an easy one and was able to decide quickly. He pocketed the money and drove off.</p>
-                    </div>
-                    <div id='im_nate' class='immoral_cond'>
-                      <p>In contrast, Nate saw his decision as difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided to pocket the money and drive off.</p>
-                    </div>
-                  </div>`
-            }
-            <p><strong>Press any key to continue to the questionnaires.</strong></p>
-          </div>
-        `,
+        stimulus: `<div><p>Scenario based on ${condition} condition...</p><p>Press any key to continue.</p></div>`
       };
 
-      // Define template questions with [name] placeholder
-      const questionTemplates = [
-        "Did [name] make his decision quickly or slowly? (1 = particularly slowly, 7 = particularly quickly)",
-        "Regardless of [name]'s decision, does it sound like [name] has underlying moral principles that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)",
-        "Regardless of [name]'s decision, do you think [name] has moral standards that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)",
-        "Regardless of [name]'s decision, do you think [name] possesses the moral knowledge and principles necessary to do 'the right thing'? (1 = not at all, 4 = somewhat, 7 = completely)",
-        "Would you say [name] was quite certain in his decision, or did [name] have hesitations about his decision? (1 = completely certain, 7 = considerable hesitations)",
-        "How close do you think [name] was to choosing the alternate course of action? (1 = very close to, 7 = not close at all)",
-        "How conflicted do you think [name] felt in making the decision? (1 = very conflicted, 7 = not at all conflicted)",
-        "Based on the information provided, do you think [name] had many reservations about the decision? (1 = none at all, 7 = a whole lot)",
-        "Do you think [name] was calm and emotionally contained while making the decision? (1 = not at all, 7 = entirely so)",
-        "To what extent do you think [name] became upset and acted without thinking? (1 = not at all, 7 = entirely so)"
-      ];
-
       // Function to create a questionnaire for a person
-      function createQuestionnaire(name, condition) {
+      function createQuestionnaire(name) {
         const labels = ["1", "2", "3", "4", "5", "6", "7"];
-        const questions = questionTemplates.map((prompt, index) => ({
-          prompt: `<div class="question-container">${prompt.replace(/\[name\]/g, name)}</div>`,
-          labels: labels,
-          required: true,
-          question_id: `${name.toLowerCase()}_q${index + 1}`
-        }));
-
-        // Customize preamble based on name and condition
-        const preamble = condition === "moral"
-          ? `<div id="m_${name.toLowerCase()}" class="moral_cond"><p>${name} saw his decision as ${
-              name === "Justin" ? "an easy one and was able to decide quickly. He did not steal the money and instead left the wallet with Customer Service."
-                                : "difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided not to steal the money and instead left the wallet with Customer Service."
-            }</p></div>`
-          : `<div id="im_${name.toLowerCase()}" class="immoral_cond"><p>${name} saw his decision as ${
-              name === "Justin" ? "an easy one and was able to decide quickly. He pocketed the money and drove off."
-                                : "difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided to pocket the money and drive off."
-            }</p></div>`;
+        const questions = [
+          { prompt: `Did ${name} make his decision quickly or slowly? (1 = particularly slowly, 7 = particularly quickly)`, labels, required: true },
+          { prompt: `Regardless of ${name}'s decision, does it sound like ${name} has underlying moral principles that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)`, labels, required: true },
+          { prompt: `Regardless of ${name}'s decision, do you think ${name} has moral standards that are good, bad, or somewhere in between? (1 = completely bad, 4 = mixed, 7 = completely good)`, labels, required: true },
+          { prompt: `Regardless of ${name}'s decision, do you think ${name} possesses the moral knowledge and principles necessary to do 'the right thing'? (1 = not at all, 4 = somewhat, 7 = completely)`, labels, required: true },
+          { prompt: `Would you say ${name} was quite certain in his decision, or did ${name} have hesitations about his decision? (1 = completely certain, 7 = considerable hesitations)`, labels, required: true },
+          { prompt: `How close do you think ${name} was to choosing the alternate course of action? (1 = very close to, 7 = not close at all)`, labels, required: true },
+          { prompt: `How conflicted do you think ${name} felt in making the decision? (1 = very conflicted, 7 = not at all conflicted)`, labels, required: true },
+          { prompt: `Based on the information provided, do you think ${name} had many reservations about the decision? (1 = none at all, 7 = a whole lot)`, labels, required: true },
+          { prompt: `Do you think ${name} was calm and emotionally contained while making the decision? (1 = not at all, 7 = entirely so)`, labels, required: true },
+          { prompt: `To what extent do you think ${name} became upset and acted without thinking? (1 = not at all, 7 = entirely so)`, labels, required: true }
+        ];
 
         return {
           type: jsPsychSurveyLikert,
           questions: questions,
-          preamble: preamble,
+          preamble: `<p>${name} was faced with a moral decision...</p>`,
           on_finish: (data) => {
-            questions.forEach((question, index) => {
-              const responseKey = question.question_id;
-              if (name === "Justin") {
-                responseData.justin[responseKey] = data.response[index];
-              } else if (name === "Nate") {
-                responseData.nate[responseKey] = data.response[index];
-              }
-            });
+            responseData[name.toLowerCase()] = data.response; // Store responses in responseData
           }
         };
       }
 
-      // Create questionnaires for Justin and Nate
-      const justin_questions = createQuestionnaire("Justin", condition);
-      const nate_questions = createQuestionnaire("Nate", condition);
-
-      // Randomize the order of Justin's and Nate's questions
+      // Create Justin's and Nate's questionnaires and randomize order
+      const justin_questions = createQuestionnaire("Justin");
+      const nate_questions = createQuestionnaire("Nate");
       const randomized_questions = jsPsych.randomization.shuffle([justin_questions, nate_questions]);
 
-      // Set the character order based on the randomized sequence
-      responseData.character_order = randomized_questions[0] === justin_questions ? "Justin_first" : "Nate_first";
+      // Set character order in responseData based on the randomized order
+      responseData.character_order = randomized_questions[0] === justin_questions ? "justin_first" : "nate_first";
 
       // End message
       const end_message = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: "<p>Thank you for participating in the study!</p><p>Press any key to finish.</p>",
-        on_finish: () => {
-          // Log the response data to the console
-          console.log("Experiment completed. Data:");
-          console.log(JSON.stringify(responseData, null, 2));
-        }
+        stimulus: "<p>Thank you for participating!</p><p>Press any key to finish.</p>"
       };
 
-      // Timeline for the experiment
-      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message];
+      // Save data configuration
+      const filename = `${subject_id}.json`;
+      const save_data = {
+        type: jsPsychPipe,
+        action: "save",
+        experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
+        filename: filename,
+        data_string: () => JSON.stringify(responseData)
+      };
+
+      // Experiment timeline
+      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message, save_data];
 
       // Run the experiment
       jsPsych.run(timeline);
