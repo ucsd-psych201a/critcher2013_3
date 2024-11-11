@@ -4,7 +4,6 @@
     <script src="https://unpkg.com/jspsych@8.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
-    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
 
     <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -154,21 +153,15 @@
       const end_message = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: "<p>Thank you for participating in the study!</p><p>Press any key to finish.</p>",
-      };
-
-      // Save data configuration (optional for actual saving in jsPsychPipe)
-      const filename = `${subject_id}.csv`;
-      const save_data = {
-        type: jsPsychPipe,
-        action: "save",
-        experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
-        filename: filename,
-        data: () => jsPsych.data.get().csv(), // Updated to match jsPsych v9 requirements
-        version: "1.0"
+        on_finish: () => {
+          // Log the response data to the console
+          console.log("Experiment completed. Data:");
+          console.log(JSON.stringify(responseData, null, 2));
+        }
       };
 
       // Timeline for the experiment
-      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message, save_data];
+      const timeline = [consent, instructions, trial_scenario, ...randomized_questions, end_message];
 
       // Run the experiment
       jsPsych.run(timeline);
