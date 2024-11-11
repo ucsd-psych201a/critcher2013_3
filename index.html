@@ -89,13 +89,17 @@
       };
 
       // Save data configuration
-      const filename = `${subject_id}.csv`;
       const save_data = {
         type: jsPsychPipe,
         action: "save",
         experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
         filename: filename,
-        data_string: () => jsPsych.data.get().csv()
+        data_string: () => JSON.stringify(responseData),
+        on_finish: () => {
+          const csvData = jsPsych.data.get().csv();
+          console.log(csvData); // This logs the CSV data to the console
+          return csvData;       // This returns the CSV data after saving
+        }
       };
 
       // Experiment timeline
