@@ -163,7 +163,15 @@
         action: "save",
         experiment_id: "fWVZFOaYbb59", // Replace with your actual experiment ID
         filename: filename,
-        data_string: () => jsPsych.data.get().csv()
+        data_string: () => {
+          // Increment each Likert scale response by 1 to correct the offset
+          jsPsych.data.get().filter({ trial_type: 'survey-likert' }).forEach(row => {
+            for (let key in row.response) {
+              row.response[key] += 1;
+            }
+          });
+          return jsPsych.data.get().csv();
+        }
       };
 
       // Timeline for the experiment
