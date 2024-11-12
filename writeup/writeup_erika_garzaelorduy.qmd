@@ -1,7 +1,7 @@
 ---
 title: "Replication of Study How Quick Decisions Illuminate Moral Character by Clayton R. Critcher, Yoel Inbar and David A. Pizarro (2013, Social Psychological and Personality Science)"
 author: "Erika Garza-Elorduy (egarzaelorduy@ucsd.edu)"
-date: "October 31, 2024"
+date: "`r Sys.Date()`"
 format:
   html:
     toc: true
@@ -20,13 +20,15 @@ Our replication aims to reproduce the findings of the first experiment by closel
 
 ### Power Analysis
 
+In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice and we increased our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach is intended to ensure adequate power to detect effects across conditions, compensating for the lack of data.
+
 ### Planned Sample
 
 For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
 
 ### Materials
 
-All the materials for this replication study comes from the original study, "How Quick Decisions Illuminate Moral Character", conducted by Critcher, Inbar, and Pizarro (2013)
+All the materials for this replication study come from the original study, *How Quick Decisions Illuminate Moral Character*, conducted by Critcher, Inbar, and Pizarro (2013). Our paradigm can be found [here](https://ucsd-psych201a.github.io/critcher2013_3/).
 
 #### Scenario:
 
@@ -158,16 +160,69 @@ There is no difference in pre-data collection method between this replication st
 
 Our replication of Experiment 1 will closely mirror the original study’s 2x2 factorial design, manipulating moral condition (stealing vs. not stealing) and decision speed (quick vs. slow). The dependent variable will be the moral character evaluation, assessed using a Likert scale. As in the original study, this replication will also examine perceived certainty and emotional impulsivity of the actor in the scenario as covariates. The questionnaire items for the covariates will also be assessed using a Likert scale.
 	
-```{r include=F}
-### Data Preparation
+```{r}
 
-#### Load Relevant Libraries and Functions
+#### Load necessary libraries
+library(tidyverse)
 
-#### Import data
+#### Define the directory containing your CSV files
+directory_path <- "../data/osfstorage-archive"
 
-#### Data exclusion / filtering
+#### Initialize an empty tibble to store all cleaned data
+cleaned_data <- tibble()
 
-#### Prepare data for analysis - create columns etc.
+#### Get a list of all CSV files in the directory
+file_list <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+#### Loop through each file in the directory
+for (file in file_list) {
+  
+  # Read the CSV file
+  data <- read_csv(file)
+  
+  # Select and clean relevant columns
+  temp_cleaned <- data %>%
+    select(condition, scenario, starts_with("response_Q")) %>%
+    drop_na() # Remove rows with NA values in selected columns
+  
+  # Determine who came first based on the first non-NA scenario entry
+  temp_cleaned <- temp_cleaned %>%
+    group_by(condition) %>%
+    mutate(
+      first_scenario = first(na.omit(scenario))  # Identify the first scenario for each participant
+    ) %>%
+    ungroup()
+  
+  # Convert condition to a factor for easier interpretation
+  temp_cleaned <- temp_cleaned %>%
+    mutate(
+      condition = factor(condition, levels = c(0, 1), labels = c("immoral", "moral")),
+      scenario = factor(scenario)
+    ) %>%
+    # Rearrange columns to place first_scenario after condition
+    select(condition, first_scenario, scenario, starts_with("response_Q"))
+  
+  # Rename response columns to include scenario information
+  temp_cleaned <- temp_cleaned %>%
+    pivot_longer(cols = starts_with("response_Q"),
+                 names_to = "question",
+                 values_to = "response") %>%
+    unite("question_scenario", scenario, question, sep = "_") %>%
+    pivot_wider(names_from = question_scenario, values_from = response)
+  
+  # Append the cleaned data from this file to the main cleaned_data tibble
+  cleaned_data <- bind_rows(cleaned_data, temp_cleaned)
+}
+
+#### View the final combined cleaned_data tibble
+print(cleaned_data)
+
+#### Define the output path for the final cleaned CSV file
+output_path <- "../data/cleaned_data.csv"
+
+#### Save the final combined cleaned_data tibble as a CSV file
+write_csv(cleaned_data, output_path)
+
 ```
 
 ### Confirmatory analysis
@@ -177,6 +232,57 @@ Since the objective of this replication study is to closely mirror the original 
 The 2x2 ANOVA is particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. Additionally, using the same statistical test enhances the comparability of our findings with those of the original study, ensuring any differences in results can be attributed more confidently to sample or context rather than methodological inconsistencies.
 
 While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
+
+### Confirmatory analysis
+
+Since the objective of this replication study is to closely mirror the original methodology, the statistical analysis will replicate the 2x2 ANOVA test used in the original study. This approach allows for direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction, within a consistent analytical framework.
+
+The 2x2 ANOVA is particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. Additionally, using the same statistical test enhances the comparability of our findings with those of the original study, ensuring any differences in results can be attributed more confidently to sample or context rather than methodological inconsistencies.
+
+While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
+
+### Confirmatory analysis
+
+Since the objective of this replication study is to closely mirror the original methodology, the statistical analysis will replicate the 2x2 ANOVA test used in the original study. This approach allows for direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction, within a consistent analytical framework.
+
+The 2x2 ANOVA is particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. Additionally, using the same statistical test enhances the comparability of our findings with those of the original study, ensuring any differences in results can be attributed more confidently to sample or context rather than methodological inconsistencies.
+
+While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
+
+```{R}
+
+library(tidyverse)
+library(dplyr)
+library(car)
+library(emmeans)
+
+dat <- read.csv("../data/cleaned_data.csv")
+
+avg_score <- dat %>% 
+  mutate(
+    j_avg_score = rowMeans(select(., Justin_response_Q2, Justin_response_Q3, Justin_response_Q4)),
+    n_avg_score = rowMeans(select(., Nate_response_Q2, Nate_response_Q3, Nate_response_Q4))
+  )
+
+grouped_data <- avg_score %>%
+  group_by(condition) %>%
+  summarize(
+    mean_justin = mean(j_avg_score, na.rm = TRUE),
+    mean_nate = mean(n_avg_score, na.rm = TRUE)
+  )
+
+anova_data <- avg_score %>%
+  pivot_longer(
+    cols = c(j_avg_score, n_avg_score),           # Columns to pivot (Justin's and Nate's scores)
+    names_to = "justin_fast_nate_slow",                  # New column to indicate source (Justin or Nate)
+    values_to = "score"                   # New column for the score values
+  )
+
+anova_result <- aov(score ~ condition * justin_fast_nate_slow, data = anova_data)
+summary(anova_result)
+
+emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
+```
 
 ### Exploratory analyses
 
