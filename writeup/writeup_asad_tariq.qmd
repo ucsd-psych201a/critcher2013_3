@@ -22,13 +22,15 @@ Our replication aims to reproduce the findings of the first experiment by closel
 
 ### Power Analysis
 
+In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice by increasing our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach is intended to ensure adequate power to detect effects across conditions and participants.
+
 ### Planned Sample
 
-For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+For our replication experiment, we would require at least a sample size of 298 participants, following standard practice. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
 
 ### Materials
 
-All the materials for this replication study comes from the original study, "How Quick Decisions Illuminate Moral Character", conducted by Critcher, Inbar, and Pizarro (2013)
+All the materials for this replication study come from the original study, "How Quick Decisions Illuminate Moral Character", conducted by Critcher, Inbar, and Pizarro (2013). Our paradigm can be found [here](https://ucsd-psych201a.github.io/critcher2013_3/).
 
 #### Scenario:
 
@@ -157,8 +159,7 @@ There is no difference in pre-data collection method between this replication st
 
 Data preparation following the analysis plan.
 	
-```{r include=F}
-
+```{R}
 # Load necessary libraries
 library(tidyverse)
 
@@ -219,7 +220,6 @@ output_path <- "../data/cleaned_data.csv"
 
 # Save the final combined cleaned_data tibble as a CSV file
 write_csv(cleaned_data, output_path)
-
 ```
 
 ### Confirmatory analysis
@@ -229,6 +229,42 @@ Since the objective of this replication study is to closely mirror the original 
 The 2x2 ANOVA is particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. Additionally, using the same statistical test enhances the comparability of our findings with those of the original study, ensuring any differences in results can be attributed more confidently to sample or context rather than methodological inconsistencies.
 
 While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
+
+``` {R}
+library(tidyverse)
+library(dplyr)
+library(car)
+library(emmeans)
+
+
+dat <- read.csv("../data/cleaned_data.csv")
+
+avg_score <- dat %>% 
+  mutate(
+    j_avg_score = rowMeans(select(., Justin_response_Q2, Justin_response_Q3, Justin_response_Q4)),
+    n_avg_score = rowMeans(select(., Nate_response_Q2, Nate_response_Q3, Nate_response_Q4))
+  )
+
+grouped_data <- avg_score %>%
+  group_by(condition) %>%
+  summarize(
+    mean_justin = mean(j_avg_score, na.rm = TRUE),
+    mean_nate = mean(n_avg_score, na.rm = TRUE)
+  )
+
+anova_data <- avg_score %>%
+  pivot_longer(
+    cols = c(j_avg_score, n_avg_score),           # Columns to pivot (Justin's and Nate's scores)
+    names_to = "justin_fast_nate_slow",                  # New column to indicate source (Justin or Nate)
+    values_to = "score"                   # New column for the score values
+  )
+
+anova_result <- aov(score ~ condition * justin_fast_nate_slow, data = anova_data)
+summary(anova_result)
+
+
+emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
+```
 
 ### Exploratory analyses
 
