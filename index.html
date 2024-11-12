@@ -115,44 +115,41 @@
       // Function to create a questionnaire for a person with consistent Likert scale labels
       function createQuestionnaire(name, condition) {
         const labels = ["1", "2", "3", "4", "5", "6", "7"]; // Uniform labels for all questions
-
+      
         // Map each question template, replacing [name] with the actual name
         const questions = questionTemplates.map((prompt) => ({
-          prompt: `<div class="question-container">${prompt.replace(
-            /\[name\]/g,
-            name
-          )}</div>`,
+          prompt: `<div class="question-container">${prompt.replace(/\[name\]/g, name)}</div>`,
           labels: labels,
           required: true,
         }));
-
+      
         // Customize preamble based on the name and condition
         const preamble =
           condition === "moral"
-            ? `<div id="m_${name.toLowerCase()}" class="moral_cond"><p>${name} saw his decision as ${
+            ? `<div id="m_${name.toLowerCase()}" class="moral_cond"><p>${name} ${
                 name === "Justin"
-                  ? "an easy one and decided quickly, opting to leave the wallet with Customer Service."
-                  : "a difficult one, deliberating for a while before deciding to leave the wallet with Customer Service."
+                  ? "saw his decision as easy and left the wallet with Customer Service."
+                  : "saw his decision as difficult, deliberating before deciding to leave the wallet."
               }</p></div>`
-            : `<div id="im_${name.toLowerCase()}" class="immoral_cond"><p>${name} saw his decision as ${
+            : `<div id="im_${name.toLowerCase()}" class="immoral_cond"><p>${name} ${
                 name === "Justin"
-                  ? "an easy one, quickly deciding to pocket the money and drive off."
-                  : "a difficult one, but after some thought, he also chose to pocket the money and drive off."
+                  ? "quickly decided to pocket the money and drive off."
+                  : "thought about it for a while before choosing to pocket the money."
               }</p></div>`;
-
-        // Return the questionnaire object with the consistent scale labels
+      
+        // Adjust Likert response values in `on_finish`
         return {
           type: jsPsychSurveyLikert,
           questions: questions,
           preamble: preamble,
-          on_finish: (data) =>
+          on_finish: (data) => {
             // Increment each Likert response by 1 to correct the offset
             for (let key in data.response) {
               data.response[key] += 1;
             }
             data.scenario = name; // Logs if the response is for Justin or Nate
-            data.is_first = is_first ? 1 : 0; // Logs if this questionnaire was presented first
-            console.log(`${name}'s questionnaire responses:`, data.response),
+            console.log(`${name}'s questionnaire responses:`, data.response);
+          },
         };
       }
 
