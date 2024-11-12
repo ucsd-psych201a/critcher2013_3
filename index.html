@@ -115,14 +115,17 @@
       // Function to create a questionnaire for a person with consistent Likert scale labels
       function createQuestionnaire(name, condition) {
         const labels = ["1", "2", "3", "4", "5", "6", "7"]; // Uniform labels for all questions
-      
+
         // Map each question template, replacing [name] with the actual name
         const questions = questionTemplates.map((prompt) => ({
-          prompt: `<div class="question-container">${prompt.replace(/\[name\]/g, name)}</div>`,
+          prompt: `<div class="question-container">${prompt.replace(
+            /\[name\]/g,
+            name
+          )}</div>`,
           labels: labels,
           required: true,
         }));
-      
+
         // Customize preamble based on the name and condition
         const preamble =
           condition === "moral"
@@ -136,19 +139,21 @@
                   ? "quickly decided to pocket the money and drive off."
                   : "thought about it for a while before choosing to pocket the money."
               }</p></div>`;
-      
-        // Adjust Likert response values in `on_finish`
+
         return {
           type: jsPsychSurveyLikert,
           questions: questions,
           preamble: preamble,
           on_finish: (data) => {
-            // Increment each Likert response by 1 to correct the offset
-            for (let key in data.response) {
-              data.response[key] += 1;
-            }
-            data.scenario = name; // Logs if the response is for Justin or Nate
-            console.log(`${name}'s questionnaire responses:`, data.response);
+            // Add a scenario identifier
+            data.scenario = name;
+
+            // Loop through each response and save it as a separate column with generic names
+            Object.keys(data.response).forEach((key, index) => {
+              data[`response_Q${index + 1}`] = data.response[key] + 1; // Adjust offset and store in separate columns
+            });
+
+            console.log(`${name}'s questionnaire responses saved:`, data);
           },
         };
       }
@@ -184,12 +189,10 @@
 
         data_string: () => {
           // Add condition and questionOrder variables to each trial's data
-          jsPsych.data
-            .get()
-            .addToAll({
-              condition: condition === "moral" ? 1 : 0,
-              question_order: questionOrder === "Justin" ? 1 : 0,
-            });
+          jsPsych.data.get().addToAll({
+            condition: condition === "moral" ? 1 : 0,
+            question_order: questionOrder === "Justin" ? 1 : 0,
+          });
           return jsPsych.data.get().csv();
         },
       };
