@@ -1,0 +1,85 @@
+/* style.css */
+
+/* General styling for the entire document */
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Styling for all experiment sections */
+  #welcome_pg,
+  #instruction_pg,
+  #trial {
+    text-align: left; /* Left-aligns the text in scenarios */
+    padding: 100px;
+    width: 800px;
+  }
+
+
+
+  /* Fixed preamble styling */
+  .jspsych-survey-likert-preamble {
+    text: bold;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 20px;
+    z-index: 1;
+    border-bottom: 1px solid #ccc; /* Optional divider */
+  }
+
+
+
+
+  /* Style for the "Continue" button */
+.jspsych-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+
+  /* Button hover effect */
+  .jspsych-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+
+
+/* Compact container for each question and Likert scale */
+.question-container {
+    max-width: 750px; /* Fixed width to keep questions consistent */
+    padding: 20px; /* Reduced padding to make it more compact */
+    margin: 0 auto 10px auto; /* Center the container with minimal space below each */
+    font-size: 16px; /* Slightly smaller font size */
+    line-height: 1.4; /* Reduced line height for compactness */
+  }
+
+  /* Compact Likert scale options */
+  .jspsych-survey-likert-option {
+    display: inline-block;
+    width: 30px; /* Reduced width for each option */
+    text-align: center;
+    margin: 0 2px; /* Minimal spacing between options */
+  }
+
+
+  .jspsych-survey-text-question {
+    margin: 20px 0;
+  }
+
+  .jspsych-survey-text-question p {
+    font-size: 16pt;
+    font-weight: bold;
+  }
+
+  textarea {
+    font-size: 14pt;
+    padding: 10px;
+    resize: vertical;
+  }
