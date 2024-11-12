@@ -146,6 +146,12 @@
           questions: questions,
           preamble: preamble,
           on_finish: (data) =>
+            // Increment each Likert response by 1 to correct the offset
+            for (let key in data.response) {
+              data.response[key] += 1;
+            }
+            data.scenario = name; // Logs if the response is for Justin or Nate
+            data.is_first = is_first ? 1 : 0; // Logs if this questionnaire was presented first
             console.log(`${name}'s questionnaire responses:`, data.response),
         };
       }
