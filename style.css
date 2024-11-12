@@ -6,7 +6,7 @@ body {
     padding: 0;
     margin: 0;
   }
-  
+
   /* Styling for all experiment sections */
   #welcome_pg,
   #instruction_pg,
@@ -15,9 +15,9 @@ body {
     padding: 100px;
     width: 800px;
   }
-  
 
-  
+
+
   /* Fixed preamble styling */
   .jspsych-survey-likert-preamble {
     text: bold;
@@ -28,9 +28,9 @@ body {
     z-index: 1;
     border-bottom: 1px solid #ccc; /* Optional divider */
   }
-  
 
-  
+
+
 
   /* Style for the "Continue" button */
 .jspsych-btn {
@@ -43,7 +43,7 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   }
-  
+
   /* Button hover effect */
   .jspsych-btn:hover {
     background-color: #45a049; /* Darker green on hover */
@@ -59,7 +59,7 @@ body {
     font-size: 16px; /* Slightly smaller font size */
     line-height: 1.4; /* Reduced line height for compactness */
   }
-  
+
   /* Compact Likert scale options */
   .jspsych-survey-likert-option {
     display: inline-block;
@@ -67,4 +67,19 @@ body {
     text-align: center;
     margin: 0 2px; /* Minimal spacing between options */
   }
-  
+
+
+  .jspsych-survey-text-question {
+    margin: 20px 0;
+  }
+
+  .jspsych-survey-text-question p {
+    font-size: 16pt;
+    font-weight: bold;
+  }
+
+  textarea {
+    font-size: 14pt;
+    padding: 10px;
+    resize: vertical;
+  }

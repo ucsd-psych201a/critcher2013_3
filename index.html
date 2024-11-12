@@ -4,6 +4,7 @@
     <script src="https://unpkg.com/jspsych@8.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
 
     <link
@@ -197,12 +198,30 @@
         },
       };
 
+      // Participant feedback section
+      const feedback = {
+        type: jsPsychSurveyText,
+        questions: [
+          {
+            prompt: "<p>Please provide any feedback you have about this study:</p>",
+            rows: 5,
+            columns: 40,
+            required: false
+          }
+        ],
+        on_finish: (data) => {
+          jsPsych.data.get().addToLast({ participant_feedback: data.response.Q0 });
+          console.log("Feedback saved:", data.response.Q0);
+        }
+      };
+
       // Timeline for the experiment
       const timeline = [
         consent,
         instructions,
         trial_scenario,
         ...randomized_questions,
+        feedback,
         end_message,
         save_data,
       ];
