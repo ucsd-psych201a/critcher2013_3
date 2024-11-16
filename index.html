@@ -3,6 +3,7 @@
   <head>
     <script src="https://unpkg.com/jspsych@8.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -124,7 +125,7 @@
             name
           )}</div>`,
           labels: labels,
-          required: true,
+          required: false,
         }));
 
         // Customize preamble based on the name and condition
@@ -173,15 +174,18 @@
       const end_message = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus:
-          "<p>Thank you for participating in the study!</p><p>Press any key to finish.</p>",
-        on_finish: () => console.log("End of experiment"),
+          "<h1>Thank you for your feedback for the study!</h1><p>Press any key to save.</p>",
+        response_ends_trial: true, // Ensure trial ends with a key press
+        on_finish: () => {
+          console.log("End message completed.");
+        },
       };
 
       // Create the unique filename using a subject ID
       const subject_id = jsPsych.randomization.randomID(10);
       const filename = `${subject_id}.csv`;
 
-      // Save data configuration
+      //Save data configuration
       const save_data = {
         type: jsPsychPipe,
         action: "save",
@@ -195,6 +199,33 @@
             question_order: questionOrder === "Justin" ? 1 : 0,
           });
           return jsPsych.data.get().csv();
+        },
+
+        on_finish: () => {
+            console.log("Data saved successfully.");
+            // Run the Prolific message after saving data
+            jsPsych.run([
+                {
+                    type: jsPsychHtmlButtonResponse,
+                    stimulus: `
+                        <div style="max-width: 600px; text-align: center;">
+                            <p style="font-size: 20pt; margin-bottom: 20px;">
+                                <b>Thank you so much for participating in this study!</b>
+                            </p>
+                            <p style="font-size: 20pt; margin-bottom: 40px;">
+                                <b>Please click the Submit button to complete the study. Wait until you are redirected to Prolific before closing this window.</b>
+                            </p>
+                        </div>
+            
+                    `,
+                    choices: ["Submit"],
+                    response_ends_trial: true,
+                    on_finish: () => {
+                        console.log("Redirecting to Prolific...");
+                        window.location.href = "https://www.prolific.co/"; // Replace with your actual Prolific URL
+                    },
+                },
+            ]);
         },
       };
 
@@ -213,7 +244,9 @@
           jsPsych.data.get().addToLast({ participant_feedback: data.response.Q0 });
           console.log("Feedback saved:", data.response.Q0);
         }
+
       };
+
 
       // Timeline for the experiment
       const timeline = [
@@ -226,7 +259,8 @@
         save_data,
       ];
 
-      // Run the experiment
+
+      //Run the experiment
       console.log("Starting experiment with timeline:", timeline);
       jsPsych.run(timeline);
     });
