@@ -164,7 +164,7 @@ Data preparation following the analysis plan.
 library(tidyverse)
 
 # Define the directory containing your CSV files
-directory_path <- "../data/osfstorage-archive"
+directory_path <- "../data/pilotB"
 
 # Initialize an empty tibble to store all cleaned data
 cleaned_data <- tibble()
@@ -216,7 +216,7 @@ for (file in file_list) {
 print(cleaned_data)
 
 # Define the output path for the final cleaned CSV file
-output_path <- "../data/cleaned_data.csv"
+output_path <- "../data/cleaned_data_pilotB.csv"
 
 # Save the final combined cleaned_data tibble as a CSV file
 write_csv(cleaned_data, output_path)
@@ -237,7 +237,7 @@ library(car)
 library(emmeans)
 
 
-dat <- read.csv("../data/cleaned_data.csv")
+dat <- read.csv("../data/cleaned_data_pilotB.csv")
 
 avg_score <- dat %>% 
   mutate(
