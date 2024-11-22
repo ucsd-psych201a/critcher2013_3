@@ -101,35 +101,6 @@
       };
 
 
-      // Attention check questions 
-      const attention_check = [
-        {
-          type: jsPsychSurveyLikert,
-          questions: [
-            {
-              prompt: "What are the names of the two individuals in the scenario?",
-              options: ["Simon and Nick", "Justin and Nate", "Tom and Rob", "John and Mike", "Jack and Bob", "Jim and Leon", "Robert and James"], 
-              required: true,
-            },
-          ],
-          on_finish: (data) => {
-            console.log("Attention check question 1 answered:", data.response.Q0);
-          },
-        },
-        {
-          type: jsPsychSurveyLikert,
-          questions: [
-            {
-              prompt: "What fo Justin and Nate find?",
-              options: ["A smartphone", "A motorbike", "A scooter", "A wallet", "A bracelet", "A watch"],
-              required: true,
-            },
-          ],
-          on_finish: (data) => {
-            console.log("Attention check question 2 answered:", data.response.Q0);
-          },
-        }
-      ];
     
 
       // Define the template questions with [name] as a placeholder
@@ -202,9 +173,6 @@
         nate_questions,
       ]);
 
-      //Split the randomized questions into two halves 
-      const first_half = randomized_questions.slice(0, Math.floor(randomized_questions.length / 2));
-      const second_half = randomized_questions.slice(Math.floor(randomized_questions.length / 2));
 
       // End message
       const end_message = {
@@ -290,9 +258,7 @@
         consent,
         instructions,
         trial_scenario,
-        ...first_half,
-        ...attention_check,
-        ...second_half,
+        ...randomized_questions,
         feedback,
         end_message,
         save_data,
