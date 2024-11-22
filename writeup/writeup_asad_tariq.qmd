@@ -26,7 +26,7 @@ In the absence of prior data or specific effect size estimates from our study to
 
 ### Planned Sample
 
-For our replication experiment, we would require at least a sample size of 298 participants, following standard practice. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+For our replication experiment, we would require at least a sample size of 298 participants, following standard practice. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific and will be screened for residing in the US and being fluent in English.
 
 ### Materials
 
@@ -139,13 +139,13 @@ Firstly, we will randomly assign each participant to one of the conditions for m
 
 ### Differences from Original Study
 
-The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online. In addition, this replication will only replicate experiment 1 of the original study.
+The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online and will have a target sample of 298 participants. In addition, this replication will only replicate experiment 1 of the original study.
 
 ### Methods Addendum (Post Data Collection)
 
 #### Actual Sample
 
-For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the 119 participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific and only screened for residing in the US and being fluent in English.
 
 **(note: since we haven't done data collection yet, our planned and actual sample are the same)**
 
@@ -157,7 +157,7 @@ There is no difference in pre-data collection method between this replication st
 
 ### Data preparation
 
-Data preparation following the analysis plan.
+Our replication of Experiment 1 will closely mirror the original study’s 2x2 factorial design, manipulating moral condition (stealing vs. not stealing) and decision speed (quick vs. slow). The dependent variable will be the moral character evaluation, assessed using a Likert scale. As in the original study, this replication will also examine perceived certainty and emotional impulsivity of the actor in the scenario as covariates. The questionnaire items for the covariates will also be assessed using a Likert scale.
 	
 ```{R}
 # Load necessary libraries
@@ -273,7 +273,7 @@ emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
 
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).
+After having perfomed our planned analysis we intend to do a comparative analysis with the data obtained from an associated graduate student group who is replicating the same experiment. The data they collect will undergo the same statistical tests as in our replication and the obtained results will be compared with our own replication through descriptive statistics and independent sample t-tests terms of how decision speed influences moral evaluations in both data.
 
 ## Discussion
 
