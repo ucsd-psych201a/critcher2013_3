@@ -178,10 +178,9 @@ for (file in file_list) {
   # Read the CSV file
   data <- read_csv(file)
   
-  # Select and clean relevant columns
+  # Select relevant columns (do not drop NAs here)
   temp_cleaned <- data %>%
-    select(condition, scenario, starts_with("response_Q")) %>%
-    drop_na() # Remove rows with NA values in selected columns
+    select(condition, scenario, starts_with("response_Q"))
   
   # Determine who came first based on the first non-NA scenario entry
   temp_cleaned <- temp_cleaned %>%
@@ -202,13 +201,19 @@ for (file in file_list) {
   
   # Rename response columns to include scenario information
   temp_cleaned <- temp_cleaned %>%
+    # Ensure no NA in 'scenario' or 'question' before combining
+    filter(!is.na(scenario)) %>%
     pivot_longer(cols = starts_with("response_Q"),
                  names_to = "question",
                  values_to = "response") %>%
+    # Remove rows where both 'question' and 'response' are NA
+    filter(!is.na(question) & !is.na(response)) %>%
     unite("question_scenario", scenario, question, sep = "_") %>%
     pivot_wider(names_from = question_scenario, values_from = response)
+
   
   # Append the cleaned data from this file to the main cleaned_data tibble
+  # Ensure rows with NAs are retained by not filtering them out
   cleaned_data <- bind_rows(cleaned_data, temp_cleaned)
 }
 
