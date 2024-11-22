@@ -100,7 +100,6 @@
           console.log("Trial scenario for", condition, "condition completed"),
       };
 
-
       // Attention check questions
       const attention_check = [
         {
@@ -202,10 +201,9 @@
         nate_questions,
       ]); 
 
-      // Split the randomized questions into two halves 
+      // Split the randomized questions into two halves
       const first_half = randomized_questions.slice(0, Math.floor(randomized_questions.length / 2));
       const second_half = randomized_questions.slice(Math.floor(randomized_questions.length / 2));
-
 
       // End message
       const end_message = {
