@@ -196,10 +196,14 @@
       const nate_questions = createQuestionnaire("Nate", condition);
 
       // Randomize the order of Justin's and Nate's questions
-      const randomized_questions = jsPsych.randomization.shuffle([
-        justin_questions,
-        nate_questions,
-      ]); 
+      // const randomized_questions = jsPsych.randomization.shuffle([
+      //   justin_questions,
+      //   nate_questions,
+      // ]); 
+
+      // Create arrays of just the questions (not the whole question objects)
+      const justin
+
 
       // Split the randomized questions into two halves
       const first_half = randomized_questions.slice(0, Math.floor(randomized_questions.length / 2));
