@@ -1,12 +1,16 @@
+```{r setup, include=FALSE}
+# Define the date
+date_format <- format(Sys.time(), '%B %d, %Y')
+```
 ---
-title: "Replication of Study 'How Quick Decisions Illuminate Moral Character' by Critcher et al. (2013, Social Psychology and Personality Science)"
+title: "Replication of Study: How Quick Decisions Illuminate Moral Character"
 author: "Luna Bellitto (lbellitto@ucsd.edu)"
-date: "11/11/2024"
+date: "`r date_format`"
 format:
   html:
     toc: true
     toc_depth: 3
----
+--- 
 
 
 ## Introduction
