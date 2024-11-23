@@ -24,23 +24,22 @@ Our replication aims to reproduce the findings of the first experiment by closel
 
 ### Power Analysis
 
-In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice by increasing our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach is intended to ensure adequate power to detect effects across conditions and participants.
+In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice and we increased our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach is intended to ensure adequate power to detect effects across conditions, compensating for the lack of data.
 
 ### Planned Sample
 
-For our replication experiment, we would require at least a sample size of 298 participants, following standard practice. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
+For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and will be screened for residing in the US and being fluent in English.
 
 ### Materials
 
-### Materials
-
-All the materials for this replication study come from the original study, How Quick Decisions Illuminate Moral Character, conducted by Critcher, Inbar, and Pizarro (2013). Our paradigm can be found [here](https://ucsd-psych201a.github.io/critcher2013_3/).
+All the materials for this replication study come from the original study, *How Quick Decisions Illuminate Moral Character*, conducted by Critcher, Inbar, and Pizarro (2013). Our paradigm can be found [here](https://ucsd-psych201a.github.io/critcher2013_3/).
 
 #### Scenario:
 
-There will be two groups assigned to one of the two conditions: the moral and immoral ones. Each of the conditions has two agents as subjects, who differ based on the quickness of their decision.
+There will be two groups assigned to one of the two conditions: moral or immoral. Each of the conditions has two agents as subjects (Justin and Nate), who differ based on the quickness of their decision.
 
-- For the moral condition, on different occasions, Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to return the wallet to customer service instead of stealing the money. Nate makes the same decision, but he reaches his conclusion after spending a long time thinking about it.  
+- For the moral condition, on different occasions, Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to return the wallet to customer service instead of stealing the money. Nate makes the same decision, but he reaches his conclusion after spending a long time thinking about it.
+
 - For the immoral condition: Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to take the money and drive away. Nate reaches the same conclusion, but he takes a long time before deciding to act.
 
 #### Questionnaire:
@@ -99,8 +98,6 @@ As in the original experiment (Critcher et al., 2013), the reproduction will fol
 
 Following the procedures outlined by Critcher et al. (2013), after reading the scenario of Justin and Nate’s actions, participants need to fill four Likert scale assessments scaled from 1 to 7\. The first one concerns the quickness with which the actors took the decision (manipulation check). In the second one, participants will need to assess Justin and Nate’s morality: "has entirely good (vs. entirely bad) moral principles," "has good (vs. bad) moral standards," and "deep down has the moral principles and knowledge to do the right thing." The third one will have four items on the questionnaire assessing level of certainty the actors had in making their decision(“how conflicted \[each\] felt when making his decision (...), how many reservations \[each\] had (...), was quite certain in his decision (...), how far \[each\] was from choosing the alternate course of action”). The fourth assessment evaluates the perceived emotional impulsivity of the actors whether “calm and emotionally contained” or "upset and acted without thinking”.
 
-## 
-
 ### Design Overview
 
 #### Factors 
@@ -142,19 +139,15 @@ Potential confounding variables in this study include but are not limited to par
 
 Firstly, we will randomly assign each participant to one of the conditions for moral condition and they will read both decision speed scenarios. The random assignments will be recorded for group mean comparisons. Moral character evaluation, certainty, and emotional impulsivity scores will be rated using the Likert scales. Any reverse-scored items in the questionnaires will be re-scaled accordingly, and we compute the mean score across items for each variable. A 2(moral condition) x2 (decision speed) ANOVA test will be conducted to compare group means for the moral character evaluation, examining main and interaction effects of both factors. Similarly, we will analyze perceived certainty and emotional impulsivity as covariates, assessing how participants’ perceptions of these traits vary with decision speed.
 
-**Clarify key analysis of interest here**. You can also pre-specify additional analyses you plan to do.
-
 ### Differences from Original Study
 
-The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online. In addition, this replication will only replicate experiment 1 of the original study.
+The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online and will have a target sample of 298 participants. In addition, this replication will only replicate experiment 1 of the original study.
 
 ### Methods Addendum (Post Data Collection)
 
 #### Actual Sample
 
-For our replication experiment, we would require at least a sample size of 120 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific.
-
-**(note: since we haven't done data collection yet, our planned and actual sample are the same)**
+For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the 119 participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and only screened for residing in the US and being fluent in English.
 
 #### Differences from pre-data collection methods plan
 
@@ -165,21 +158,22 @@ There is no difference in pre-data collection method between this replication st
 ### Data preparation
 
 Our replication of Experiment 1 will closely mirror the original study’s 2x2 factorial design, manipulating moral condition (stealing vs. not stealing) and decision speed (quick vs. slow). The dependent variable will be the moral character evaluation, assessed using a Likert scale. As in the original study, this replication will also examine perceived certainty and emotional impulsivity of the actor in the scenario as covariates. The questionnaire items for the covariates will also be assessed using a Likert scale.
+	
+```{r}
 
-```{R}
-# Load necessary libraries
+#### Load necessary libraries
 library(tidyverse)
 
-# Define the directory containing your CSV files
-directory_path <- "../data/osfstorage-archive"
+#### Define the directory containing your CSV files
+directory_path <- "../data/pilotB"
 
-# Initialize an empty tibble to store all cleaned data
+#### Initialize an empty tibble to store all cleaned data
 cleaned_data <- tibble()
 
-# Get a list of all CSV files in the directory
+#### Get a list of all CSV files in the directory
 file_list <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
 
-# Loop through each file in the directory
+#### Loop through each file in the directory
 for (file in file_list) {
   
   # Read the CSV file
@@ -219,16 +213,16 @@ for (file in file_list) {
   cleaned_data <- bind_rows(cleaned_data, temp_cleaned)
 }
 
-# View the final combined cleaned_data tibble
+#### View the final combined cleaned_data tibble
 print(cleaned_data)
 
-# Define the output path for the final cleaned CSV file
-output_path <- "../data/cleaned_data.csv"
+#### Define the output path for the final cleaned CSV file
+output_path <- "../data/cleaned_data_pilotB.csv"
 
-# Save the final combined cleaned_data tibble as a CSV file
+#### Save the final combined cleaned_data tibble as a CSV file
 write_csv(cleaned_data, output_path)
-```
 
+```
 
 ### Confirmatory analysis
 
@@ -238,6 +232,7 @@ The 2x2 ANOVA is particularly appropriate here because it provides a straightfor
 
 While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
 
+
 ```{R}
 library(tidyverse)
 library(dplyr)
@@ -245,33 +240,46 @@ library(car)
 library(emmeans)
 
 
-dat <- read.csv("../data/cleaned_data.csv")
+# Load the dataset
+dat <- read.csv("../data/cleaned_data_pilotB.csv")  # Read the dataset into a data frame
 
+# Count how many participants had missing data
+participants_with_missing <- sum(rowSums(is.na(dat)) > 0)  # Count rows with at least one NA value
+
+# Drop rows with missing values
+cleaned_data <- dat %>%
+  filter(complete.cases(.))  # Retain only rows without missing values
+
+# Calculate average scores for Justin and Nate's responses
 avg_score <- dat %>% 
   mutate(
+    # Calculate the average score for Justin across selected questions
     j_avg_score = rowMeans(select(., Justin_response_Q2, Justin_response_Q3, Justin_response_Q4)),
+    # Calculate the average score for Nate across selected questions
     n_avg_score = rowMeans(select(., Nate_response_Q2, Nate_response_Q3, Nate_response_Q4))
   )
 
+# Group data by condition and calculate the mean scores for Justin and Nate
 grouped_data <- avg_score %>%
-  group_by(condition) %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
   summarize(
-    mean_justin = mean(j_avg_score, na.rm = TRUE),
-    mean_nate = mean(n_avg_score, na.rm = TRUE)
+    mean_justin = mean(j_avg_score, na.rm = TRUE),  # Mean of Justin's average scores
+    mean_nate = mean(n_avg_score, na.rm = TRUE)     # Mean of Nate's average scores
   )
 
+# Prepare data for ANOVA analysis
 anova_data <- avg_score %>%
   pivot_longer(
-    cols = c(j_avg_score, n_avg_score),           # Columns to pivot (Justin's and Nate's scores)
-    names_to = "justin_fast_nate_slow",                  # New column to indicate source (Justin or Nate)
-    values_to = "score"                   # New column for the score values
+    cols = c(j_avg_score, n_avg_score),  # Pivot Justin's and Nate's average scores into long format
+    names_to = "justin_fast_nate_slow", # New column to indicate score type (Justin or Nate)
+    values_to = "score"                 # New column for the score values
   )
 
-
+# Perform a two-way ANOVA
 anova_result <- aov(score ~ condition * justin_fast_nate_slow, data = anova_data)
-summary(anova_result)
+summary(anova_result)  # Display ANOVA results
 
-
+# Conduct post hoc pairwise comparisons using estimated marginal means
 emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
 ```
 ### Exploratory analyses
