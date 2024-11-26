@@ -84,3 +84,11 @@ body {
     padding: 10px;
     resize: vertical;
   }
+
+
+
+/* Style radio buttons and their labels */
+.attention_check {
+  margin-bottom: 10px;
+  text-align: left;
+}

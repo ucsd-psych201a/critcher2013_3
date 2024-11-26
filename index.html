@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@2.0.0"></script>
+
 
     <link
       href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css"
@@ -176,7 +178,7 @@
       const end_message = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus:
-          "<h1>Thank you for your feedback for the study!</h1><p>Press any key to save.</p>",
+          "<h1>Press any key to save. Thank you for your participation!</h1>",
         response_ends_trial: true, // Ensure trial ends with a key press
         on_finish: () => {
           console.log("End message completed.");
@@ -232,24 +234,44 @@
         },
       };
 
-      // Participant feedback section
-      const feedback = {
-        type: jsPsychSurveyText,
-        questions: [
-          {
-            prompt: "<p>Please provide any feedback you have about this study:</p>",
-            rows: 5,
-            columns: 40,
-            required: false
-          }
-        ],
-        on_finish: (data) => {
-          jsPsych.data.get().addToLast({ participant_feedback: data.response.Q0 });
-          console.log("Feedback saved:", data.response.Q0);
-        }
-
+      //Attention Check Questions 
+      const attention_check = {
+        type: jsPsychSurveyHtmlForm,
+        preamble: `
+            <h3>Attention Check Questions</h3>
+            <p>Answer based on the scenario you just read.</p>
+          
+        `,
+        html: `
+          <div class = "attention_check">
+            <p>What are the names of the two individuals in the scenario?</p>
+          
+            ${["Simon and Nick", "Justin and Nate", "Tom and Rob", "John and Mike", "Jack and Bob", "Jim and Leon", "Robert and James"]
+              .map(
+                (name, i) =>
+                  `<input type="radio" id="q1_${i}" name="q1" value="${name}" required>
+                  <label for="q1_${i}">${name}</label><br />`
+              )
+              .join("")}
+          
+            <p>What do Justin and Nate find?</p>
+          
+            ${["A smartphone", "A motorbike", "A scooter", "A wallet", "A bracelet", "A watch"]
+              .map(
+                (item, i) =>
+                  `<input type="radio" id="q2_${i}" name="q2" value="${item}" required>
+                  <label for="q2_${i}">${item}</label><br />`
+              )
+              .join("")}
+          </div>
+        `,
+        on_finish: (data) => console.log("Responses:", data.response),
       };
 
+      
+
+
+      
 
       // Timeline for the experiment
       const timeline = [
@@ -257,7 +279,7 @@
         instructions,
         trial_scenario,
         ...randomized_questions,
-        feedback,
+        attention_check,
         end_message,
         save_data,
       ];

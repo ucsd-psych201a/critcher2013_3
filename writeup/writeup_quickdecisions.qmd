@@ -24,11 +24,11 @@ Our replication aims to reproduce the findings of the first experiment by closel
 
 ### Power Analysis
 
-In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice and we increased our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach is intended to ensure adequate power to detect effects across conditions, compensating for the lack of data.
+In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice and we increased our original sample size of 119 by a factor of 2.5, setting a target of 100 participants. This approach is intended to ensure adequate power to detect effects across conditions, compensating for the lack of data.
 
 ### Planned Sample
 
-For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and will be screened for residing in the US and being fluent in English.
+For our replication experiment, we would require at least a sample size of 100 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and will be screened for residing in the US and being fluent in English.
 
 ### Materials
 
@@ -118,7 +118,7 @@ As in the original experiment (Critcher et al., 2013), the reproduction will fol
 
 Following the procedures outlined by Critcher et al. (2013), after reading the scenario of Justin and Nate’s actions, participants need to fill four Likert scale assessments scaled from 1 to 7. The first one concerns the quickness with which the actors took the decision (manipulation check). In the second one, participants will need to assess Justin and Nate’s morality: "has entirely good (vs. entirely bad) moral principles," "has good (vs. bad) moral standards," and "deep down has the moral principles and knowledge to do the right thing." The third one will have four items on the questionnaire assessing level of certainty the actors had in making their decision(“how conflicted \[each\] felt when making his decision (...), how many reservations \[each\] had (...), was quite certain in his decision (...), how far \[each\] was from choosing the alternate course of action”). The fourth assessment evaluates the perceived emotional impulsivity of the actors whether “calm and emotionally contained” or "upset and acted without thinking”.
 
-Then two questions were included to check attention of the participants before we end the experiment.
+Then two questions were included to check attention of the participants before the end the experiment.
 
 ### Design Overview
 
@@ -160,15 +160,19 @@ Potential confounding variables in this study include but are not limited to par
 
 Firstly, we will randomly assign each participant to one of the conditions for moral condition and they will read both decision speed scenarios. The random assignments will be recorded for group mean comparisons. Moral character evaluation, certainty, and emotional impulsivity scores will be rated using the Likert scales. Any reverse-scored items in the questionnaires will be re-scaled accordingly, and we compute the mean score across items for each variable. A 2(moral condition) x2 (decision speed) ANOVA test will be conducted to compare group means for the moral character evaluation, examining main and interaction effects of both factors. Similarly, we will analyze perceived certainty and emotional impulsivity as covariates, assessing how participants’ perceptions of these traits vary with decision speed.
 
+Note: the code for exclusion for the attention check wasn't implemented in this write up since the attention check questions were added after the pilot data collection. 
+
 ### Differences from Original Study
 
-The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online and will have a target sample of 100 participants. In addition, this replication will only replicate experiment 1 of the original study.
+The difference from the original study is the participant sample. The participants for this replication will be recruited through the data collection platform, Prolific, instead of recruiting local population. As such, this replication will be hosted online and will have a target sample of 100 participants. This study also includes two attention check questions after the questionnaire. In addition, this replication will only replicate experiment 1 of the original study.
 
 ### Methods Addendum (Post Data Collection)
 
 #### Actual Sample
 
-For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the 119 participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and only screened for residing in the US and being fluent in English.
+For our replication experiment, we would require at least a sample size of 100 participants. In the original study, the 119 participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. 
+
+Participants for this replication study will be recruited through the data collection platform, Prolific, and screened for residing in the US, being fluent in English and at least 18 years old, from the United States and fluent in English. Participants will either be paid at a rate of $12 per hour or reimbursed with course credits.
 
 #### Differences from pre-data collection methods plan
 
