@@ -1,0 +1,46 @@
+"rt","stimulus","response","trial_type","trial_index","plugin_version","time_elapsed","condition","question_order","scenario","response_Q1","response_Q2","response_Q3","response_Q4","response_Q5","response_Q6","response_Q7","response_Q8","response_Q9","response_Q10"
+"56590","
+          <div id='welcome_pg' class='welcome'>
+            <h2 style=""font-size: 24pt;""><strong>Welcome to the study!</strong></h2>
+            <h3 style=""font-size: 20pt;""><strong>Consent Form</strong></h3>
+            <p>In this study, you will read scenarios and answer questions about moral decisions.</p>
+            <p>You are being invited to participate in a research experiment titled ""Replication of Study: How Quick Decisions Illuminate Moral Character"". This study is being conducted by Dr. Bria Long from UC San Diego and associated graduate students in the Statistical Computing and Inference Data course.<p>
+            <p>The purpose of this study is to better understand how the speed of decision making can illuminate moral character. You will be asked to read scenarios and answer questions about moral decisions. The study will take approximately 5-10 minutes to complete.</p>
+            <p>Your participation in this study is completely voluntary, and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled.<p>
+            <p>Your responses will be kept confidential and we will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g., Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.</p>
+            <p>If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Dr. Bria Long, at <a href=""mailto:brlong@ucsd.edu"">brlong@ucsd.edu</a>. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at <a href=""mailto:irb@ucsd.edu"">irb@ucsd.edu</a> or 858-246-4777.</p>
+            <p>By participating in this research, you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p>
+            <p><strong>Press any key to confirm consent and continue.<strong></p>
+          </div>
+        ","Enter","html-keyboard-response","0","2.0.0","56602","0","0","","","","","","","","","","",""
+"39546","
+          <div id='instruction_pg' class='instruction'>
+            <h3 style=""font-size: 24pt""><strong>Experiment Instructions</strong></h3>
+            <p>In this study, you will read scenarios and answer questions about moral decisions. You will be presented with a scenario involving two individuals, Justin and Nate, who each find a wallet with money in a parking lot. You will be asked to answer questions about their decision-making process.</p>
+            <p>After reading the scenario, you will be asked to answer a series of questions about each individual's decision-making process. Please answer the questions based on the information provided in the scenario.</p>
+            <p>There are no right or wrong answers, so please answer honestly based on your own opinions and beliefs.</p>
+            <p><strong>Press any key to continue to the scenarios.<strong></p>
+          </div>
+        ","Enter","html-keyboard-response","1","2.0.0","96152","0","0","","","","","","","","","","",""
+"68308","
+          <div id='trial'>
+            <p style=""font-size: 17pt""><strong>Please read the following scenario carefully.</strong></p>
+
+            <div id='general' class='scenario'>
+              <p>Justin and Nate were walking to separate cars in the parking lot of Andronico's, a local grocery store, when they each spotted a different lost wallet next to their cars. Upon picking up the wallet and looking inside, each found several hundred dollars in cash. Each man considered whether he should return the wallet and money to the Customer Service desk at Andronico's or pocket the money and drive away.</p>
+            </div>
+            <div id='immoral_trial'>
+                    <div id='im_justin' class='immoral_cond'>
+                      <p>Justin saw his decision as an easy one and was able to decide quickly. He pocketed the money and drove off.</p>
+                    </div>
+                    <div id='im_nate' class='immoral_cond'>
+                      <p>In contrast, Nate saw his decision as difficult and was only able to decide after long and careful deliberation. After several minutes of thinking in his car, he too decided to pocket the money and drive off.</p>
+                    </div>
+                  </div>
+            <p><strong>Press any key to continue to the questionnaires.<strong></p>
+          </div>
+        ","Enter","html-keyboard-response","2","2.0.0","164463","0","0","","","","","","","","","","",""
+"317519","","{""Q0"":6,""Q1"":0,""Q2"":0,""Q3"":0,""Q4"":0,""Q5"":6,""Q6"":6,""Q7"":0,""Q8"":0,""Q9"":0}","survey-likert","3","2.0.0","481997","0","0","Justin","7","1","1","1","1","7","7","1","1","1"
+"142363","","{""Q0"":0,""Q1"":6,""Q2"":6,""Q3"":6,""Q4"":6,""Q5"":0,""Q6"":0,""Q7"":6,""Q8"":6,""Q9"":6}","survey-likert","4","2.0.0","624376","0","0","Nate","1","7","7","7","7","1","1","7","7","7"
+"20698","","{""q1"":""Justin and Nate"",""q2"":""A wallet""}","survey-html-form","5","2.0.0","645082","0","0","","","","","","","","","","",""
+"4045","<h1>Press any key to save. Thank you for your participation!</h1>","Enter","html-keyboard-response","6","2.0.0","649135","0","0","","","","","","","","","","",""
