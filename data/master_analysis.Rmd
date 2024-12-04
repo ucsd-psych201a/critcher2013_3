@@ -1,0 +1,383 @@
+---
+title: "Master Data Analysis"
+output:
+  html_document: default
+  pdf_document: default
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document serves as the master file for data analysis of the replication study, *"How Quick Decisions Illuminate Moral Character."* The primary objective of this study is to closely mirror the methodology of the original research. Accordingly, the statistical analysis will replicate the 2x2 ANOVA used in the original study, enabling a direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction.
+
+------------------------------------------------------------------------
+
+# Data Collection and Analysis
+
+This replication study is part of a series of replication projects conducted in **PSYCH 201a / CSS 204**. Three independent teams replicated the study. To strengthen the confirmatory analysis, we merged the datasets from all three teams. The analysis will be based on both the combined dataset and the individual datasets specific to this team.
+
+-   **Team 1:** Led by \_\_\_\_\_\_ [Link to repository: ]\
+-   **Team 2:** Led by \_\_\_\_\_\_ [Link to repository: ]\
+-   **Team 3:** Led by the authors of this document: Luna Bellitto, Erika Garza, Emily Han, and Asad Tariq [Link to repository: ]
+
+------------------------------------------------------------------------
+
+# Hypotheses
+
+1.  **Individuals who make quick decisions about moral dilemmas will be perceived as having stronger moral convictions compared to those who deliberate longer.**
+
+    -   A 2 (moral condition) x 2 (decision speed) ANOVA will be conducted to compare group means for moral character evaluations, examining the main effects and interaction effects of both factors.
+
+2.  **Additional analyses will explore perceived certainty and emotional impulsivity as covariates, assessing how perceptions of these traits vary with decision speed.**\
+    *(Note: This section is still in progress and will be completed by the end of the week.)*
+
+------------------------------------------------------------------------
+
+### Loading required library and data set
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(car)
+library(emmeans)
+```
+
+```{r}
+# Load the dataset
+dat <- read.csv("quick_decisions_combined.csv")  # Read the dataset into a data frame
+```
+
+## Implement Exclusion Criteria: For participant with incomplete answers and lack of variance
+
+```{r}
+# Process the dataset
+cleaned_data <- dat %>%
+  # Step 1: Filter out missing values
+  mutate(is_complete = complete.cases(.)) %>%
+  filter(complete.cases(.)) %>%
+  
+  # Step 2: Calculate variance for Justin and Nate
+  rowwise() %>%
+  mutate(
+    justin_variance = var(c(Justin_Q2, Justin_Q3, Justin_Q4), na.rm = TRUE), # Variance for Justin
+    nate_variance = var(c(Nate_Q2, Nate_Q3, Nate_Q4), na.rm = TRUE)          # Variance for Nate
+  ) %>%
+  ungroup() %>%
+  
+  # Step 3: Filter out participants based on variance criteria
+  filter(!(justin_variance == 0 | nate_variance == 0)) %>%
+  
+  # Step 4: Drop intermediate columns used for exclusion
+  select(-is_complete, -justin_variance, -nate_variance)
+
+# Step 5: Calculate exclusion counts
+  na_exclusions_count <- nrow(dat) - nrow(dat %>% filter(complete.cases(.))) # Count rows with missing values
+  variance_exclusions_count <- nrow(dat %>% filter(complete.cases(.))) - nrow(cleaned_data) # Count participants excluded for lack of variance
+  total_exclusions <- na_exclusions_count + variance_exclusions_count  # Calculate total exclusions
+
+# Step 6: Create a summary table of exclusions
+exclusions_summary <- tibble(
+  Exclusion_Criteria = c(
+    "Missing values (NA)",
+    "Lack of variance",
+    "Total exclusions"
+  ),
+  Count = c(
+    na_exclusions_count,
+    variance_exclusions_count,
+    total_exclusions
+  )
+)
+
+# Display the table
+print(exclusions_summary)
+```
+
+```{r}
+
+# Count how many trials of each group is kept for combined analysis
+trial_count <- cleaned_data %>%
+  group_by(group) %>% 
+  summarize(row_count = n())
+
+# Count how many trials is kept for each condition in combined analysis
+condition_combined_counts <- cleaned_data %>%
+  group_by(condition) %>%
+  summarize(count = n())
+
+# View the counts
+print(trial_count)
+print(condition_combined_counts)
+
+```
+
+## Manipulation Check for Combined Dataset
+
+Groups the data by condition and provide a clear comparison of how the participants perceived Justin's decision speed and Nate's decision speed across the two conditions. (Note: the mean should be different between Justin and Nate but it should be similar across condition).
+
+Then we will determine whether if there is a statistically significant difference in the mean scores of Justin's speed and Nate's speed.
+
+```{r}
+# Add Participant_ID column and make it the first column
+cleaned_data <- cleaned_data %>%
+  mutate(Participant_ID = row_number()) %>%
+  select(Participant_ID, everything())
+
+```
+
+```{r}
+#Summarize the decision speed columns for comparison
+
+manipulation_stats <- cleaned_data %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_speed_justin = mean(Justin_Q1),  # Mean of Justin's speed
+    mean_speed_nate = mean(Nate_Q1)     # Mean of Nate's speed
+  )
+
+
+# Paired t-test for Justin's and Nate's speeds for checking whether the manipulation was successful or not 
+manipulation_combined_t_test <- t.test(
+  cleaned_data$Justin_Q1, 
+  cleaned_data$Nate_Q1, 
+  paired = TRUE
+)
+
+print(manipulation_combined_t_test)
+```
+
+### Perceived Decision Speed Across Condition [**Not Necessary**]
+
+Upon reviewing the descriptive statistics using **'manipulation_stats'**, we observed a potential mean difference in perceived decision speed for Nate across conditions (moral vs. immoral). Out of curiosity, we decided to conduct a statistical test to explore whether this observed difference is significant.
+
+Please note that this analysis is conducted purely for exploratory purposes and is not part of the original study design. The results should be interpreted cautiously and are not intended to inform the main findings of the study.
+
+```{r}
+# Independent t-tests for moral vs immoral condition on Justin's speed & Nate's speed 
+t_test_justin <- t.test(
+  Justin_Q1 ~ condition, 
+  data = cleaned_data,
+  var.equal = TRUE
+)
+
+t_test_nate <- t.test(
+  Nate_Q1 ~ condition, 
+  data = cleaned_data,
+  var.equal = TRUE
+)
+
+print(t_test_justin)
+print(t_test_nate)
+
+```
+
+## Confirmatory Analysis for Combined Dataset: 2x2 Anova
+
+**Objective** : The aim of this analysis is to perform a **2 (moral condition: moral vs. immoral) x 2 (decision speed: quick vs. slow)** repeated-measures ANOVA to compare group means for moral character evaluations of Justin and Nate.
+
+### Step 1: Calculate Average Scores for Justin and Nate
+
+```{r}
+character_eval_combined <- cleaned_data %>% 
+  mutate(
+    # Calculate the average score for Justin across selected questions
+    quick_justin_score = rowMeans(select(., Justin_Q2, Justin_Q3, Justin_Q4)),
+    # Calculate the average score for Nate across selected questions
+    slow_nate_score = rowMeans(select(., Nate_Q2, Nate_Q3, Nate_Q4))
+  )
+```
+
+### Step 2: Summarize Average Scores by Condition
+
+Group data by condition for comparison of Justin's moral character evaluation and Nate's character evaluation across condition
+
+**[Note for ERI]: I think you can use this to creat the plot**
+
+```{r}
+ character_eval_combined_stats <- character_eval_combined %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+print(character_eval_combined_stats)  # View summarized data
+```
+
+### Step 3: Reshape Data for ANOVA
+
+```{r}
+character_eval_combined_long <- character_eval_combined %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "person",                           # Create a column for person
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    person = ifelse(person == "quick_justin_score", "Justin", "Nate") # Relabel person column
+  )  %>%
+  select(Participant_ID, condition, person, score) # Keep only essential columns
+
+
+# View the reshaped data
+head(character_eval_combined_long)
+```
+
+### Step 4: Run Repeated-Measures ANOVA
+
+```{r}
+anova_combined <- aov(score ~ condition * person + Error(Participant_ID/person), data = character_eval_combined_long)
+
+# View the summary
+summary(anova_combined)
+```
+
+### Step 5: Conduct Post Hoc Pairwise Comparisons
+
+```{r}
+# Conduct post hoc pairwise comparisons using estimated marginal means
+posthoc_results <- emmeans(anova_combined, pairwise ~ condition * person)
+
+print(posthoc_results)
+
+```
+
+### Visualization
+
+**Note to Eri: Please look at step 2**
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+## Confirmatory Analysis of Group 3's data: 2x2 Anova
+
+This analysis focuses on a subset of the data, specifically Group 3. We will perform the same 2 (moral condition: moral vs. immoral) x 2 (decision speed: quick vs. slow) ANOVA as in the full dataset but restricted to Group 3. This allows us to assess whether the observed effects are consistent within this specific subset.
+
+### Sub setting the data
+
+```{r}
+g3_cleaned_data <- cleaned_data %>%
+  filter(group == 3)
+  
+# Count how many trials is kept for each condition in combined analysis
+g3_condition_counts <- g3_cleaned_data %>%
+  group_by(condition) %>%
+  summarize(count = n())
+
+print(g3_condition_counts)
+
+```
+
+### Step 1: Calculate Average Scores for Justin and Nate
+
+```{r}
+character_eval_group3 <- g3_cleaned_data %>% 
+  mutate(
+    # Calculate the average score for Justin across selected questions
+    quick_justin_score = rowMeans(select(., Justin_Q2, Justin_Q3, Justin_Q4)),
+    # Calculate the average score for Nate across selected questions
+    slow_nate_score = rowMeans(select(., Nate_Q2, Nate_Q3, Nate_Q4))
+  )
+```
+
+### Step 2: Summarize Average Scores by Condition
+
+Group data by condition for comparison of Justin's moral character evaluation and Nate's character evaluation across condition
+
+**[Note for ERI]: I think you can use this to creat the plot**
+
+```{r}
+ character_eval_group3_stats <- character_eval_group3 %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+print(character_eval_combined_stats)  # View summarized data
+```
+
+### Step 3: Reshape Data for ANOVA
+
+```{r}
+character_eval_group3_long <- character_eval_group3 %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "person",                           # Create a column for person
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    person = ifelse(person == "quick_justin_score", "Justin", "Nate") # Relabel person column
+  )  %>%
+  select(Participant_ID, condition, person, score) # Keep only essential columns
+
+
+# View the reshaped data
+head(character_eval_group3_long)
+```
+
+### Step 4: Run Repeated-Measures ANOVA
+
+```{r}
+anova_group3 <- aov(score ~ condition * person + Error(Participant_ID/person), data = character_eval_group3_long)
+
+# View the summary
+summary(anova_group3)
+```
+
+### Step 5: Conduct Post Hoc Pairwise Comparisons
+
+```{r}
+# Conduct post hoc pairwise comparisons using estimated marginal means
+posthoc_group3_results <- emmeans(anova_group3, pairwise ~ condition * person)
+
+print(posthoc_group3_results)
+
+```
+
+### Visualization
+
+**Note to Eri: Please look at step 2**
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```

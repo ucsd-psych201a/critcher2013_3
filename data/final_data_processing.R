@@ -1,5 +1,7 @@
 # Load necessary libraries
 library(tidyverse)
+library(readr)
+
 
 # Define the directory containing your CSV files
 directory_path <- "../data/final-data"

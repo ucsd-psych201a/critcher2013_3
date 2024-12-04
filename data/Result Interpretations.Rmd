@@ -1,0 +1,73 @@
+---
+title: "Result Interpretations"
+output: html_document
+date: "2024-12-04"
+---
+# **Results and Interpretation for Combined Dataset**
+
+## **1. ANOVA Results**
+
+- **Main Effect of Condition (`condition`):**  
+  - *F*(1, 194) = 108.06, *p* < 2e-16  
+  - **Interpretation:**  
+    There is a highly significant main effect of condition, indicating that scores differ significantly between the moral and immoral conditions.
+
+- **Main Effect of Person (`person`):**  
+  - *F*(1, 194) = 0.67, *p* = 0.414  
+  - **Interpretation:**  
+    There is no significant overall difference in scores between Justin and Nate.
+
+- **Interaction Effect (`condition:person`):**  
+  - *F*(1, 194) = 70.71, *p* = 8.83e-15  
+  - **Interpretation:**  
+    The significant interaction effect suggests that the effect of condition (moral vs. immoral) on scores depends on the person (Justin vs. Nate).
+
+---
+
+## **2. Post Hoc Pairwise Comparisons**
+
+- **Significant Differences:**  
+  - **Immoral Justin vs. Moral Justin:**  
+    - Estimate = -2.815, *p* < 0.0001  
+    - Justin’s scores in the immoral condition are significantly lower than in the moral condition.  
+  - **Immoral Justin vs. Immoral Nate:**  
+    - Estimate = -1.034, *p* = 0.0040  
+    - Justin’s scores in the immoral condition are significantly lower than Nate’s scores in the same condition.  
+  - **Immoral Justin vs. Moral Nate:**  
+    - Estimate = -1.331, *p* = 0.0004  
+    - Justin’s scores in the immoral condition are significantly lower than Nate’s scores in the moral condition.  
+  - **Moral Justin vs. Immoral Nate:**  
+    - Estimate = 1.782, *p* < 0.0001  
+    - Justin’s scores in the moral condition are significantly higher than Nate’s scores in the immoral condition.  
+  - **Moral Justin vs. Moral Nate:**  
+    - Estimate = 1.484, *p* = 0.0002  
+    - Justin’s scores in the moral condition are significantly higher than Nate’s scores in the moral condition.
+
+- **Non-Significant Difference:**  
+  - **Immoral Nate vs. Moral Nate:**  
+    - Estimate = -0.297, *p* = 0.4983  
+    - There is no significant difference in Nate’s scores between the immoral and moral conditions.
+
+---
+
+## **3. Interpretation**
+
+- **Justin:**  
+  - Scores show significant differences between the moral and immoral conditions. Justin scores higher in the moral condition and lower in the immoral condition.  
+
+- **Nate:**  
+  - Scores are relatively stable across conditions, with no significant difference between the moral and immoral conditions.  
+
+- **Interaction Effect:**  
+  - The interaction between condition and person is driven by larger differences in Justin’s scores compared to Nate’s scores. This suggests that the effect of condition is more pronounced for Justin than for Nate.
+
+---
+
+## **4. Notes and Recommendations**
+
+- **Bias Warning:**  
+  - Warnings indicate that the EMMs may be biased due to potential imbalances in the design (e.g., unequal group sizes). Results should be interpreted cautiously.  
+
+- **Next Steps:**  
+  - Check for imbalances in the dataset and consider using a mixed-effects model (e.g., `lmer`) for more robust estimates.  
+  - Visualize the interaction effect using a line plot to better communicate the findings.
