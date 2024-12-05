@@ -90,8 +90,8 @@ cleaned_data <- dat %>%
   # Step 2: Calculate variance for Justin and Nate
   rowwise() %>%
   mutate(
-    justin_variance = var(c(Justin_Q2, Justin_Q3, Justin_Q4), na.rm = TRUE), # Variance for Justin
-    nate_variance = var(c(Nate_Q2, Nate_Q3, Nate_Q4), na.rm = TRUE)          # Variance for Nate
+    justin_variance = var(c(2:11), na.rm = TRUE), # Variance for Justin
+    nate_variance = var(c(12:22), na.rm = TRUE)          # Variance for Nate
   ) %>%
   ungroup() %>%
   
