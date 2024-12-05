@@ -51,9 +51,35 @@ library(lme4)
 dat <- read.csv("quick_decisions_combined.csv")  # Read the dataset into a data frame
 ```
 
+```{r}
+# Count how many trials of each group is kept for combined analysis
+trial_count1 <- dat %>%
+  group_by(group) %>% 
+  summarize(row_count = n())
+
+
+# View the counts
+print(trial_count1)
+
+
+
+# cleaned_data <- dat %>%
+#   # Step 1: Filter out missing values
+#   mutate(is_complete = complete.cases(.)) %>%
+#   filter(complete.cases(.)) 
+# 
+# trial_count2 <- cleaned_data %>%
+#   group_by(group) %>% 
+#   summarize(row_count = n())
+# 
+# print(trial_count2)
+```
+
 ## Implement Exclusion Criteria: For participant with incomplete answers and lack of variance
 
+
 ```{r}
+
 # Process the dataset
 cleaned_data <- dat %>%
   # Step 1: Filter out missing values
@@ -95,7 +121,9 @@ exclusions_summary <- tibble(
 
 # Display the table
 print(exclusions_summary)
+
 ```
+
 
 ```{r}
 
@@ -117,9 +145,9 @@ print(condition_combined_counts)
 
 ## Manipulation Check for Combined Dataset
 
-Groups the data by condition and provide a clear comparison of how the participants perceived Justin's decision speed and Nate's decision speed across the two conditions. (Note: the mean should be different between Justin and Nate but it should be similar across condition).
+Groups the data by condition and provides a clear comparison of how the participants perceived Justin's decision speed and Nate's decision speed across the two conditions. (Note: the mean should be different between Justin and Nate but it should be similar across condition).
 
-Then we will determine whether if there is a statistically significant difference in the mean scores of Justin's speed and Nate's speed.
+Then we will determine whether there is a statistically significant difference in the mean scores of Justin's speed and Nate's speed.
 
 ```{r}
 # Add Participant_ID column and make it the first column
@@ -195,7 +223,7 @@ character_eval_combined <- cleaned_data %>%
 
 Group data by condition for comparison of Justin's moral character evaluation and Nate's character evaluation across condition
 
-**[Note for ERI]: I think you can use this to creat the plot**
+**[Note for ERI]: I think you can use this to create the plot**
 
 ```{r}
  character_eval_combined_stats <- character_eval_combined %>%
@@ -262,30 +290,50 @@ eta2_combined <- eta_squared(anova_combined_lmer, partial = TRUE)
 print(eta2_combined)
 ```
 
-
-
-
-
-
 ### Visualization
 
 **Note to Eri: Please look at step 2**
 
 ```{r}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Updated plot with detailed y-axis tweaks
+ggplot(character_eval_combined_long, aes(x = person, y = score, fill = person)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.5),  # Columns closer together
+    width = 0.6                             # Narrower columns
+  ) +
+  facet_wrap(
+    ~ condition, 
+    labeller = as_labeller(c(moral = "Moral", immoral = "Immoral")),  # Simplify labels
+    strip.position = "bottom"  # Moral/Immoral labels at the bottom
+  ) +
+  labs(
+    title = "Moral Character Evaluations Combined Data",
+    y = "Mean Score (Likert Scale)",  # Y-axis label with clarification
+    fill = "Decision Speed"  # Legend title
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    strip.text = element_text(face = "bold"),
+    strip.placement = "outside",  # Push bottom labels outward
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    panel.spacing = unit(1, "lines"),  # Adjust spacing between panels
+    axis.title.x = element_blank(),  # Remove x-axis title
+    axis.text.x = element_blank(),   # Remove x-axis labels (Justin/Nate)
+    axis.title.y = element_text(margin = margin(r = 15))  # Add spacing to y-axis label
+  ) +
+  scale_fill_manual(
+    values = c("Justin" = "#4F81BD", "Nate" = "#9DC3E6"),  # Two shades of blue
+    labels = c("Justin" = "Quick (Justin)", "Nate" = "Slow (Nate)")  # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
 
 
 ```
@@ -397,25 +445,46 @@ print(eta2_group3)
 
 ```{r}
 
+library(ggplot2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Updated plot with detailed y-axis tweaks
+ggplot(character_eval_combined_long, aes(x = person, y = score, fill = person)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.5),  # Columns closer together
+    width = 0.6                             # Narrower columns
+  ) +
+  facet_wrap(
+    ~ condition, 
+    labeller = as_labeller(c(moral = "Moral", immoral = "Immoral")),  # Simplify labels
+    strip.position = "bottom"  # Moral/Immoral labels at the bottom
+  ) +
+  labs(
+    title = "Moral Character Evaluations Combined Data",
+    y = "Mean Score (Likert Scale)",  # Y-axis label with clarification
+    fill = "Decision Speed"  # Legend title
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    strip.text = element_text(face = "bold"),
+    strip.placement = "outside",  # Push bottom labels outward
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    panel.spacing = unit(1, "lines"),  # Adjust spacing between panels
+    axis.title.x = element_blank(),  # Remove x-axis title
+    axis.text.x = element_blank(),   # Remove x-axis labels (Justin/Nate)
+    axis.title.y = element_text(margin = margin(r = 15))  # Add spacing to y-axis label
+  ) +
+  scale_fill_manual(
+    values = c("Justin" = "#4F81BD", "Nate" = "#9DC3E6"),  # Two shades of blue
+    labels = c("Justin" = "Quick (Justin)", "Nate" = "Slow (Nate)")  # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
 
 
 ```
