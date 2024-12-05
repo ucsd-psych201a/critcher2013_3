@@ -45,6 +45,7 @@ library(emmeans)
 library(effectsize)
 library(lme4)
 library(ggplot2)
+library(lmerTest)
 ```
 
 ```{r}
