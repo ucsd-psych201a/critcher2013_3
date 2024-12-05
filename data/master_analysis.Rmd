@@ -42,6 +42,8 @@ library(tidyverse)
 library(dplyr)
 library(car)
 library(emmeans)
+library(effectsize)
+library(lme4)
 ```
 
 ```{r}
@@ -244,6 +246,27 @@ print(posthoc_results)
 
 ```
 
+
+### Step 6: Compute the effect size
+```{r}
+# Refit the repeated measures model
+anova_combined_lmer <- lmer(
+  score ~ condition * person + (1 | Participant_ID),
+  data = character_eval_combined_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_combined <- eta_squared(anova_combined_lmer, partial = TRUE)
+
+# Print results
+print(eta2_combined)
+```
+
+
+
+
+
+
 ### Visualization
 
 **Note to Eri: Please look at step 2**
@@ -351,6 +374,21 @@ posthoc_group3_results <- emmeans(anova_group3, pairwise ~ condition * person)
 
 print(posthoc_group3_results)
 
+```
+
+### Step 6: Compute the effect size
+```{r}
+# Refit the repeated measures model
+anova_group3_lmer <- lmer(
+  score ~ condition * person + (1 | Participant_ID),
+  data = character_eval_group3_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_group3 <- eta_squared(anova_group3_lmer, partial = TRUE)
+
+# Print results
+print(eta2_group3)
 ```
 
 ### Visualization
