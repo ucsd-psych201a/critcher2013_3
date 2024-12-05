@@ -44,6 +44,7 @@ library(car)
 library(emmeans)
 library(effectsize)
 library(lme4)
+library(ggplot2)
 ```
 
 ```{r}
@@ -310,7 +311,7 @@ ggplot(character_eval_combined_long, aes(x = person, y = score, fill = person)) 
     strip.position = "bottom"  # Moral/Immoral labels at the bottom
   ) +
   labs(
-    title = "Moral Character Evaluations Combined Data",
+    title = "Moral Character Evaluations (Combined Data)",
     y = "Mean Score (Likert Scale)",  # Y-axis label with clarification
     fill = "Decision Speed"  # Legend title
   ) +
@@ -459,7 +460,7 @@ ggplot(character_eval_group3_long, aes(x = person, y = score, fill = person)) +
     strip.position = "bottom"  # Moral/Immoral labels at the bottom
   ) +
   labs(
-    title = "Moral Character Evaluations Combined Data",
+    title = "Moral Character Evaluations (Group 3 Data)",
     y = "Mean Score (Likert Scale)",  # Y-axis label with clarification
     fill = "Decision Speed"  # Legend title
   ) +
