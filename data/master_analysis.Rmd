@@ -340,6 +340,39 @@ ggplot(character_eval_combined_long, aes(x = speed, y = score, fill = speed)) +
 
 ```
 
+```{r}
+ggplot(character_eval_combined_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Moral Character Evaluations (Combined Data)",
+    x = "Decision Speed (Justin / Nate)",
+    y = "Mean Score (Likert Scale)",  # Updated y-axis label
+    fill = "Moral Condition"          # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
+```
+
 
 ```{r}
 
@@ -604,5 +637,37 @@ ggplot(character_eval_group3_long, aes(x = condition, y = score, fill = speed)) 
     expand = c(0, 0)   # No extra space above/below
   )
 
+```
+```{r}
+ggplot(character_eval_group3_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Moral Character Evaluations (Group 3 Data)",
+    x = "Decision Speed (Justin / Nate)",    # Updated x-axis label
+    y = "Mean Score (Likert Scale)",         # Updated y-axis label
+    fill = "Moral Condition"                # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
 ```
 
