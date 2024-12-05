@@ -445,10 +445,8 @@ print(eta2_group3)
 
 ```{r}
 
-library(ggplot2)
-
 # Updated plot with detailed y-axis tweaks
-ggplot(character_eval_combined_long, aes(x = person, y = score, fill = person)) +
+ggplot(character_eval_group3_long, aes(x = person, y = score, fill = person)) +
   geom_bar(
     stat = "summary",
     fun = "mean",
