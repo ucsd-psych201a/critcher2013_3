@@ -79,7 +79,6 @@ print(trial_count1)
 
 ## Implement Exclusion Criteria: For participant with incomplete answers and lack of variance
 
-
 ```{r}
 
 # Process the dataset
@@ -125,7 +124,6 @@ exclusions_summary <- tibble(
 print(exclusions_summary)
 
 ```
-
 
 ```{r}
 
@@ -276,8 +274,8 @@ print(posthoc_results)
 
 ```
 
-
 ### Step 6: Compute the effect size
+
 ```{r}
 # Refit the repeated measures model
 anova_combined_lmer <- lmer(
@@ -372,7 +370,6 @@ ggplot(character_eval_combined_long, aes(x = speed, y = score, fill = condition)
     expand = c(0, 0)   # No extra space above/below
   )
 ```
-
 
 ```{r}
 
@@ -519,6 +516,7 @@ print(posthoc_group3_results)
 ```
 
 ### Step 6: Compute the effect size
+
 ```{r}
 # Refit the repeated measures model
 anova_group3_lmer <- lmer(
@@ -638,6 +636,7 @@ ggplot(character_eval_group3_long, aes(x = condition, y = score, fill = speed)) 
   )
 
 ```
+
 ```{r}
 ggplot(character_eval_group3_long, aes(x = speed, y = score, fill = condition)) +
   geom_bar(
@@ -670,4 +669,3 @@ ggplot(character_eval_group3_long, aes(x = speed, y = score, fill = condition)) 
     expand = c(0, 0)   # No extra space above/below
   )
 ```
-
