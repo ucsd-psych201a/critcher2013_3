@@ -4,7 +4,7 @@ date_format <- format(Sys.time(), '%B %d, %Y')
 ```
 
 ---
-title: "Replication of Study How Quick Decisions Illuminate Moral Character by Clayton R. Critcher, Yoel Inbar and David A. Pizarro (2013, Social Psychological and Personality Science)"
+title: "Replication of Study 'How Quick Decisions Illuminate Moral Character' by Clayton R. Critcher, Yoel Inbar and David A. Pizarro (2013, Social Psychological and Personality Science)"
 author: "Erika Garza-Elorduy (egarzaelorduy@ucsd.edu)"
 date: "`r Sys.Date()`"
 format:
@@ -29,7 +29,7 @@ In the absence of prior data or specific effect size estimates from our study to
 
 ### Planned Sample
 
-For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and will be screened for residing in the US and being fluent in English.
+For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through Prolific and screened to ensure they reside in the US and are fluent in English.
 
 ### Materials
 
@@ -39,7 +39,7 @@ All the materials for this replication study come from the original study, *How 
 
 There will be two groups assigned to one of the two conditions: moral or immoral. Each of the conditions has two agents as subjects (Justin and Nate), who differ based on the quickness of their decision.
 
-- For the moral condition, on different occasions, Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to return the wallet to customer service instead of stealing the money. Nate makes the same decision, but he reaches his conclusion after spending a long time thinking about it.
+- For the moral condition, on different occasions, Justin and Nate are at the grocery store’s parking lot. Both individuals come across a cash-filled wallet. Justin quickly decides to return the wallet to customer service instead of stealing the money. Nate makes the same decision, but he reaches his conclusion after spending a long time thinking about it.
 
 - For the immoral condition: Justin and Nate are at the grocery store’s parking lot. Each of them finds a cash-filled wallet. Justin quickly decides to take the money and drive away. Nate reaches the same conclusion, but he takes a long time before deciding to act.
 
@@ -165,7 +165,7 @@ Our replication of Experiment 1 will closely mirror the original study’s 2x2 f
 #### Load necessary libraries
 library(tidyverse)
 
-#### Define the directory containing your CSV files
+#### Define the directory containing the CSV files
 directory_path <- "../data/pilotB"
 
 #### Initialize an empty tibble to store all cleaned data
@@ -283,16 +283,17 @@ summary(anova_result)  # Display ANOVA results
 # Conduct post hoc pairwise comparisons using estimated marginal means
 emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
 ```
+
 ### Exploratory analyses
 
 Any follow-up analyses desired (not required).
 
 ## Discussion
 
+
+
 ### Summary of Replication Attempt
 
 Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
 
 ### Commentary
-
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) \- e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
