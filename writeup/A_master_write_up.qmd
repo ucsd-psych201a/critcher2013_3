@@ -1,26 +1,715 @@
----
-title: "master_write_up"
-format: html
-editor: visual
----
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{r setup, include=FALSE}
+# Define the date
+date_format <- format(Sys.time(), '%B %d, %Y')
 ```
 
-You can add options to executable code like this
+---
+title: "Replication of Study 'How Quick Decisions Illuminate Moral Character' by Clayton R. Critcher, Yoel Inbar and David A. Pizarro (2013, Social Psychological and Personality Science)"
+author: "Critcher_2013_3"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc_depth: 3
+---
+
+## Introduction
+
+This report presents our replication of the study "How Quick Decisions Illuminate Moral Character" conducted by Critcher, Inbar, and Pizarro (2013), which examined the effect of decision speed on judgments of moral character. The original study found that individuals who made quick moral decisions were evaluated more positively, whereas those who made quick immoral decisions were judged more harshly. In contrast, slower decisions, whether moral or immoral, led to more moderate evaluations of character. The authors proposed that quick decisions are seen as more certain and, therefore, more revealing of the decision maker’s underlying motives.
+
+The original study employed two experiments. The first involved participants evaluating two individuals’ moral character, one who made a quick decision and another who took longer to decide, in both ethical and unethical contexts. The second experiment explored a similar structure but focused on more complex moral dilemmas. Both experiments consistently showed that quick decisions amplified moral evaluations, with quick moral decisions being judged more favorably and quick immoral decisions being judged more harshly.
+
+Our replication aimed to reproduce the findings of the first experiment by closely following the original methodology. Specifically, we focused on testing whether decision speed continued to amplify moral character judgments, with quick decisions leading to more polarized evaluations compared to slower ones. This replication project is part of a broader effort to assess the robustness of psychological research through reproducibility studies.
+
+## Methods
+
+### Power Analysis
+
+In the absence of prior data or specific effect size estimates from our study to conduct a traditional power analysis, we followed standard practice and increased our original sample size of 119 by a factor of 2.5, setting a target of 298 participants. This approach was intended to ensure adequate power to detect effects across conditions, compensating for the lack of data.
+
+### Planned Sample
+
+For our replication experiment, we would require a sample size of 298 participants. In the original study, the participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study were recruited through Prolific and screened to ensure they reside in the US and are fluent in English.
+
+### Materials
+
+All the materials for this replication study come from the original study, *How Quick Decisions Illuminate Moral Character*, conducted by Critcher, Inbar, and Pizarro (2013). Our paradigm can be found [here](https://ucsd-psych201a.github.io/critcher2013_3/).
+
+#### Scenario:
+
+Participants were randomly assigned to one of two conditions: moral or immoral. Within each condition, two agents, Justin and Nate, were presented, differing in their decision-making speed.
+
+-   **Moral Condition**: In separate instances, Justin and Nate encounter a cash-filled wallet in a grocery store parking lot. Justin quickly decides to return the wallet to customer service rather than keeping the money. Nate ultimately makes the same decision, but only after a prolonged period of deliberation.
+
+-   **Immoral Condition**: In separate instances, Justin and Nate find a cash-filled wallet in a grocery store parking lot. Justin quickly decides to take the money and leave. Nate reaches the same conclusion but only after taking a long time to decide.
+
+#### Questionnaire:
+
+Participants were asked to answer the following questions based on their evaluation of each agent, Justin and Nate. Each question corresponds to one of the categories below, with its own specific scale.
+
+##### Quickness:
+
+1.  Did \[name\] make his decision quickly or slowly?\
+    **Scale:** 1 = particularly slowly, 7 = particularly quickly
+
+##### Moral character evaluation:
+
+2.  Regardless of \[name\]’s decision, does it sound like \[name\] has underlying moral principles that are good, bad, or somewhere in between?\
+    **Scale:** 1 = completely bad, 4 = mixed, 7 = completely good
+
+3.  Regardless of \[name\]’s decision, do you think \[name\] has moral standards that are good, bad, or somewhere in between?\
+    **Scale:** 1 = completely bad, 4 = mixed, 7 = completely good
+
+4.  Regardless of \[name\]’s decision, do you think \[name\] possesses the moral knowledge and principles necessary to do ‘the right thing’?\
+    **Scale:** 1 = not at all, 4 = somewhat, 7 = completely
+
+##### Certainty:
+
+5.  Would you say \[name\] was quite certain in his decision, or did \[name\] have hesitations about his decision?\
+    **Scale:** 1 = completely certain, 7 = considerable hesitations
+
+6.  How close do you think \[name\] was to choosing the alternate course of action?\
+    **Scale:** 1 = very close to, 7 = not close at all
+
+7.  How conflicted do you think \[name\] felt in making the decision?\
+    **Scale:** 1 = very conflicted, 7 = not at all conflicted
+
+8.  Based on the information provided, do you think \[name\] had many reservations about the decision?\
+    **Scale:** 1 = none at all, 7 = a whole lot
+
+##### Emotional impulsivity:
+
+9.  Do you think \[name\] was calm and emotionally contained while making the decision?\
+    **Scale:** 1 = not at all, 7 = entirely so
+
+10. To what extent do you think \[name\] became upset and acted without thinking?\
+    **Scale:** 1 = not at all, 7 = entirely so
+
+### Procedure
+
+As in the original experiment (Critcher et al., 2013), our paradigm followed this procedure: “Participants read about Justin and Nate, two men who each independently came upon cash-filled wallets in the parking lot of a local grocery store". Justin ‘was able to decide quickly’ what to do, while Nate ‘was only able to decide after long and careful deliberation.’ Participants assigned to the moral condition learned that both men ‘did not steal the money but instead left the wallet with customer service.’ Those in the immoral condition learned that both men ‘pocketed the money and drove off.’”
+
+Adhering to the procedures outlined by Critcher et al. (2013), after reading the scenario of Justin and Nate’s actions, participants completed four Likert-scale assessments, each scaled from 1 to 7. The first assessment evaluated the quickness of the actors’ decisions (manipulation check). The second assessed Justin and Nate’s morality, with items such as: “has entirely good (vs. entirely bad) moral principles,” “has good (vs. bad) moral standards,” and “deep down has the moral principles and knowledge to do the right thing.” The third assessment included four items evaluating the certainty of the actors’ decisions, such as: “how conflicted \[each\] felt when making his decision,” “how many reservations \[each\] had,” “was quite certain in his decision,” and “how far \[each\] was from choosing the alternate course of action.” Finally, the fourth assessment evaluated perceived emotional impulsivity, asking whether the actors were “calm and emotionally contained” or “upset and acted without thinking.”
+
+### Design Overview
+
+#### Factors
+
+In this replication study, two factors were manipulated: participants were randomly assigned to a condition (moral vs. immoral), and within each condition, they were exposed to both scenarios where one actor made the decision quickly (moral or immoral), and the other made the same decision slowly.
+
+#### Primary Measures
+
+Four primary measures were collected from participants:
+
+1.  **Quickness of Decision**: A manipulation check assessing participants’ perceptions of how quickly Justin and Nate made their decisions (e.g., “Did \[name\] make his decision quickly or slowly?”).
+
+2.  **Moral Character Evaluation**: Participants rated each agent’s moral principles and standards using items such as, “Does \[name\] have underlying moral principles that are good, bad, or somewhere in between?” and “Does \[name\] possess the moral knowledge and principles necessary to do the right thing?”
+
+3.  **Certainty**: Four items evaluated participants’ perceptions of each agent’s certainty in their decision, including “How conflicted \[name\] felt when making the decision” and “How close \[name\] was to choosing the alternate course of action.”
+
+4.  **Emotional Impulsivity**: Two items assessed perceptions of each agent’s emotional impulsivity, such as “Was \[name\] calm and emotionally contained?” and “Did \[name\] become upset and act without thinking?”
+
+#### Mixed Design
+
+The replication study reflects the original study’s mixed design:
+
+-   **Between-Subjects Factor**:
+    -   **Moral Condition (moral vs. immoral)**: Participants were randomly assigned to one of two conditions—moral (where both characters return the wallet) or immoral (where both characters keep the wallet). Each participant experienced only one of these conditions, making this factor between-subjects.
+-   **Within-Subjects Factor**:
+    -   **Decision Speed (quick vs. deliberative)**: Each participant evaluated both Justin (quick decision) and Nate (deliberative decision). Because every participant observed and evaluated both decision speeds within their assigned condition, this factor is within-subjects.
+
+#### Impact of Switching Between- and Within-Subjects Designs
+
+Although this replication followed the original study’s mixed design, switching both factors (decision and speed) to either a fully within-subjects or fully between-subjects design is a possible choice.
+
+A fully within-subjects design could increase statistical power and require fewer participants, as each person would experience all combinations of conditions (quick/slow and moral/immoral). This design reduces variability due to individual differences, making it easier to detect effects. However, it could also risk carryover effects, where experiencing one condition might influence responses in the next, potentially producing biased results. Additionally, participants may guess the study’s purpose and alter their responses to appear consistent or meet the experiment’s expectations.
+
+In contrast, in a fully between-subjects design, each participant would experience only one combination of decision speed and moral condition, requiring a larger sample size to achieve reliable effects. With only one condition per participant, variability due to individual differences is higher, which reduces statistical power and sensitivity to detect effects. However, this design minimizes potential biases, such as carryover effects and demand characteristics, as participants encounter only one scenario.
+
+#### Potential Confounding Variables
+
+Potential confounding variables in this study include but are not limited to participants’ own biases and preconceptions about the decision-making process, which can manifest as personal perceptions of quick versus slow decisions and overall moral judgments. Another important confound relates to preconceptions about men’s moral character, as both characters in the scenario are male, and participants may carry implicit gender biases that influence their evaluations. Additionally, cultural perspectives, participants’ emotional states and contexts, as well as the moral complexity of the scenarios, may further impact these judgments.
+
+### Differences from Original Study
+
+This replication differs from the original study primarily in the participant sample and mode of data collection. Participants for this replication were recruited through the online platform Prolific, rather than from a local population at a university. Consequently, this replication was conducted entirely online and targeted a sample size of 300 participants, larger than the original sample of 119. Additionally, this replication focused exclusively on Experiment 1 from the original study and did not include subsequent experiments.
+
+### Methods Addendum (Post Data Collection)
+
+#### Actual Sample
+
+For our replication experiment, we would require at least a sample size of 298 participants. In the original study, the 119 participants were students from the University of California, Berkeley or members from the nearby community who were randomly assigned to different conditions to assess the influence of decision speed on moral evaluations. However, participants for this replication study will be recruited through the data collection platform, Prolific, and only screened for residing in the US and being fluent in English.
+
+#### Differences from pre-data collection methods plan
+
+Within the CSS 204 course, three independent teams worked on replicating Critcher, Inbar, and Pizarro’s study, each conducting separate data collection efforts. Combined, these efforts aligned with the target sample size of 300 specified in our planned power analysis (rounded from 298). To facilitate the analysis, our Teaching Assistant, Janna Wennberg, merged the cleaned datasets from all three teams. She carefully organized the data to ensure consistency and accuracy for our individual analyses. This combined dataset provided greater statistical power and a broader participant base, while still allowing for comparisons between the combined dataset and the individual datasets collected by our team.
+
+For this analysis, we used both the merged dataset and the individual dataset specific to our group (group 3) to run our confirmatory analysis: 2x2 Anova. Additionally, we reverse-coded items related to decision certainty (from our combined dataset) to align with the original study’s methodology. These steps were implemented to ensure consistency across datasets and preserve the validity of our findings.
+
+## Results
+
+### Data preparation
+
+Our replication of Experiment 1 will closely mirror the original study’s 2x2 factorial design, manipulating moral condition (stealing vs. not stealing) and decision speed (quick vs. slow). The dependent variable will be the moral character evaluation, assessed using a Likert scale. As in the original study, this replication will also examine perceived certainty of the actor in the scenario as covariates. The questionnaire items for the covariates will also be assessed using a Likert scale.
+
+#### Raw Data Processing
 
 ```{r}
-#| echo: false
-2 * 2
+#### Load necessary libraries
+library(tidyverse)
+library(dplyr)
+library(car)
+library(emmeans)
+library(effectsize)
+library(lme4)
+library(ggplot2)
+library(lmerTest)
+
+# Define the directory containing your CSV files
+directory_path <- "../data/final-data"
+
+# Initialize an empty tibble to store all cleaned data
+cleaned_data <- tibble()
+
+# Get a list of all CSV files in the directory
+file_list <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Loop through each file in the directory
+for (file in file_list) {
+  # Read the CSV file
+  data <- read_csv(file)
+  
+  # Flag to track if the attention check passes
+  attention_check_passed <- FALSE
+  
+  # Check attention check questions
+  attention_check_row <- data %>%
+    filter(trial_type == "survey-html-form")
+  
+  # Validate attention check
+  if (nrow(attention_check_row) > 0) {
+    # Parse the JSON string in the response column
+    attention_responses <- jsonlite::fromJSON(attention_check_row$response)
+    
+    # Define correct answers for attention check
+    correct_answers <- list(
+      "q1" = "Justin and Nate",
+      "q2" = "A wallet"
+    )
+    
+    # Check if all attention check answers are correct
+    attention_check_passed <- all(
+      attention_responses$q1 == correct_answers$q1 &&
+        attention_responses$q2 == correct_answers$q2
+    )
+  }
+  
+  # Process data only if attention check passes
+  if (attention_check_passed) {
+    # Select relevant columns (do not drop NAs here)
+    temp_cleaned <- data %>%
+      select(condition, scenario, starts_with("response_Q"))
+    
+    # Determine who came first based on the first non-NA scenario entry
+    temp_cleaned <- temp_cleaned %>%
+      group_by(condition) %>%
+      mutate(
+        first_scenario = first(na.omit(scenario))  # Identify the first scenario for each participant
+      ) %>%
+      ungroup()
+    
+    # Convert condition to a factor for easier interpretation
+    temp_cleaned <- temp_cleaned %>%
+      mutate(
+        condition = factor(condition, levels = c(0, 1), labels = c("immoral", "moral")),
+        scenario = factor(scenario)
+      ) %>%
+      # Rearrange columns to place first_scenario after condition
+      select(condition, first_scenario, scenario, starts_with("response_Q"))
+    
+    # Rename response columns to include scenario information
+    temp_cleaned <- temp_cleaned %>%
+      # Ensure no NA in 'scenario' or 'question' before combining
+      filter(!is.na(scenario)) %>%
+      pivot_longer(cols = starts_with("response_Q"),
+                   names_to = "question",
+                   values_to = "response") %>%
+      # Remove rows where both 'question' and 'response' are NA
+      filter(!is.na(question) & !is.na(response)) %>%
+      unite("question_scenario", scenario, question, sep = "_") %>%
+      pivot_wider(names_from = question_scenario, values_from = response)
+    
+    # Append the cleaned data from this file to the main cleaned_data tibble
+    # Ensure rows with NAs are retained by not filtering them out
+    cleaned_data <- bind_rows(cleaned_data, temp_cleaned)
+  } else {
+    # If attention check fails, log the file name (optional)
+    message(paste("Attention check failed for file:", file))
+  }
+}
+
+# View the final combined cleaned_data tibble
+print(cleaned_data)
+
+# Define the output path for the final cleaned CSV file
+output_path <- "../data/cleaned_data_final.csv"
+
+# Save the final combined cleaned_data tibble as a CSV file
+write_csv(cleaned_data, output_path)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+#### Combined Data Processing
+
+```{r}
+# Load the combined dataset
+dat <- read.csv("../data/quick_decisions_combined.csv")  # Read the dataset into a data frame
+
+### Implement Exclusion Criteria: For participant with incomplete answers and lack of variance
+
+# Process the dataset
+cleaned_data <- dat %>%
+  # Step 1: Filter out missing values
+  mutate(is_complete = complete.cases(.)) %>%
+  filter(complete.cases(.)) %>%
+  
+  # Step 2: Calculate variance for Justin and Nate
+  rowwise() %>%
+  mutate(
+    justin_variance = var(c(2:11), na.rm = TRUE), # Variance for Justin
+    nate_variance = var(c(12:22), na.rm = TRUE)          # Variance for Nate
+  ) %>%
+  ungroup() %>%
+  
+  # Step 3: Filter out participants based on variance criteria
+  filter(!(justin_variance == 0 | nate_variance == 0)) %>%
+  
+  # Step 4: Drop intermediate columns used for exclusion
+  select(-is_complete, -justin_variance, -nate_variance)
+
+# Step 5: Calculate exclusion counts
+  na_exclusions_count <- nrow(dat) - nrow(dat %>% filter(complete.cases(.))) # Count rows with missing values
+  variance_exclusions_count <- nrow(dat %>% filter(complete.cases(.))) - nrow(cleaned_data) # Count participants excluded for lack of variance
+  total_exclusions <- na_exclusions_count + variance_exclusions_count  # Calculate total exclusions
+
+# Step 6: Create a summary table of exclusions
+exclusions_summary <- tibble(
+  Exclusion_Criteria = c(
+    "Missing values (NA)",
+    "Lack of variance",
+    "Total exclusions"
+  ),
+  Count = c(
+    na_exclusions_count,
+    variance_exclusions_count,
+    total_exclusions
+  )
+)
+
+# Display the table
+print(exclusions_summary)
+```
+
+#### Manipulation Check for Combined Dataset
+
+Groups the data by condition and provides a clear comparison of how the participants perceived Justin's decision speed and Nate's decision speed across the two conditions. (Note: the mean should be different between Justin and Nate but it should be similar across condition).
+
+Then we will determine whether there is a statistically significant difference in the mean scores of Justin's speed and Nate's speed.
+
+```{r}
+# Add Participant_ID column and make it the first column
+cleaned_data <- cleaned_data %>%
+  mutate(Participant_ID = row_number()) %>%
+  select(Participant_ID, everything())
+
+manipulation_stats <- cleaned_data %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_speed_justin = mean(Justin_Q1),  # Mean of Justin's speed
+    mean_speed_nate = mean(Nate_Q1)     # Mean of Nate's speed
+  )
+
+# Paired t-test for Justin's and Nate's speeds for checking whether the manipulation was successful or not 
+manipulation_combined_t_test <- t.test(
+  cleaned_data$Justin_Q1, 
+  cleaned_data$Nate_Q1, 
+  paired = TRUE
+)
+
+
+print(manipulation_combined_t_test)
+```
+
+### Confirmatory analysis
+
+Since the objective of this replication study was to closely mirror the original methodology, the statistical analysis replicated the 2x2 ANOVA test used in the original study. This statistical approach allowed for a direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction, within a consistent analytical framework.
+
+The 2x2 ANOVA was particularly appropriate here because it provides a straightforward method for comparing group means across these two factors, making it ideal for testing the original hypotheses about how decision speed and moral outcome influence moral judgments. By using the same statistical test as the original study, we ensured that any differences in results could be attributed to sample or context rather than methodological inconsistencies.
+
+To enhance the robustness of our findings, we performed the analysis on both the combined dataset (aggregated across all three teams) and our team-specific dataset. The combined dataset allowed us to evaluate the generalizability of the findings across a more diverse sample while maintaining alignment with the target sample size of 300. The team-specific dataset, on the other hand, allowed us to ensure that any patterns observed in the combined analysis were consistent with those from our independently collected data.
+
+While other methods, such as a linear mixed-effects model, could offer flexibility, the 2x2 ANOVA preserves the simplicity and interpretability central to the original study’s analysis. By using this approach, we stay true to the original design and ensure consistency in our replication study.
+
+#### Confirmatory Analysis for Combined Dataset
+
+```{r}
+### Step 1: Calculate Average Scores for Justin and Nate
+
+character_eval_combined <- cleaned_data %>% 
+  mutate(
+    # Calculate the average score for Justin across selected questions
+    quick_justin_score = rowMeans(select(., Justin_Q2, Justin_Q3, Justin_Q4)),
+    # Calculate the average score for Nate across selected questions
+    slow_nate_score = rowMeans(select(., Nate_Q2, Nate_Q3, Nate_Q4))
+  )
+
+### Step 2: Summarize Average Scores by Condition
+
+# Group data by condition for comparison of Justin's moral character evaluation and Nate's character evaluation across condition.
+
+ character_eval_combined_stats <- character_eval_combined %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+
+### Step 3: Reshape Data for ANOVA
+character_eval_combined_long <- character_eval_combined %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "speed",                           # Create a column for speed
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    speed = ifelse(speed == "quick_justin_score", "Justin", "Nate") # Relabel speed column
+  )  %>%
+  select(Participant_ID, condition, speed, score) # Keep only essential columns
+
+
+
+### Step 4: Run Repeated-Measures ANOVA
+anova_combined <- aov(score ~ condition * speed + Error(Participant_ID/speed), data = character_eval_combined_long)
+summary(anova_combined)
+```
+
+#### Confirmatory Analysis of Group 3's data
+
+This analysis focuses on a subset of the data, specifically Group 3. We will perform the same 2 (moral condition: moral vs. immoral) x 2 (decision speed: quick vs. slow) ANOVA as in the full dataset but restricted to Group 3. This allows us to assess whether the observed effects are consistent within this specific subset.
+
+```{r}
+### Sub setting the data
+g3_cleaned_data <- cleaned_data %>%
+  filter(group == 3)
+
+
+### Step 1: Calculate Average Scores for Justin and Nate
+character_eval_group3 <- g3_cleaned_data %>% 
+  mutate(
+    # Calculate the average score for Justin across selected questions
+    quick_justin_score = rowMeans(select(., Justin_Q2, Justin_Q3, Justin_Q4)),
+    # Calculate the average score for Nate across selected questions
+    slow_nate_score = rowMeans(select(., Nate_Q2, Nate_Q3, Nate_Q4))
+  )
+
+### Step 2: Summarize Average Scores by Condition
+
+# Group data by condition for comparison of Justin's moral character evaluation and Nate's character evaluation across condition
+
+ character_eval_group3_stats <- character_eval_group3 %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+### Step 3: Reshape Data for ANOVA
+character_eval_group3_long <- character_eval_group3 %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "speed",                           # Create a column for speed
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    speed = ifelse(speed == "quick_justin_score", "Justin", "Nate") # Relabel speed column
+  )  %>%
+  select(Participant_ID, condition, speed, score) # Keep only essential columns
+
+
+### Step 4: Run Repeated-Measures ANOVA
+
+anova_group3 <- aov(score ~ condition * speed + Error(Participant_ID/speed), data = character_eval_group3_long)
+summary(anova_group3)
+```
+
+#### Visualization
+
+```{r}
+ggplot(character_eval_combined_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Moral Character Evaluations (Combined Data)",
+    x = "Decision Speed (Justin / Nate)",
+    y = "Mean Score (Likert Scale)",  # Updated y-axis label
+    fill = "Moral Condition"          # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
+```
+
+```{r}
+ggplot(character_eval_group3_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Moral Character Evaluations (Group 3 Data)",
+    x = "Decision Speed (Justin / Nate)",    # Updated x-axis label
+    y = "Mean Score (Likert Scale)",         # Updated y-axis label
+    fill = "Moral Condition"                # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
+```
+
+# Exploratory Analysis
+
+## Analysis on perceived certainty
+
+The aim of this analysis is to perform a **2 (moral condition: moral vs. immoral) x 2 (decision speed: quick vs. slow)** repeated-measures ANOVA to compare group means for decision certainty evaluations of Justin and Nate.
+
+Items accounting for decision certainty evaluation (Question 5-8):
+
+5.  Would you say \[name\] was quite certain in his decision, or did \[name\] have hesitations about his decision? (1 = completely certain, 7 = considerable hesitations)
+6.  How close do you think \[name\] was to choosing the alternate course of action? (1 = very close to, 7 = not close at all)
+7.  How conflicted do you think \[name\] felt in making the decision? (1 = very conflicted, 7 = not at all conflicted)
+8.  Based on the information provided, do you think \[name\] had many reservations about the decision? (1 = none at all, 7 = a whole lot)
+
+```{r}
+### Step 1: Calculate Average Scores for Justin and Nate
+
+  # Since Questions 5 & 8 are reverse scored, we need to reverse code those items before we proceed with further analysis  Reverse coding is performed on a 1-7 scale to align with the scoring direction. 
+  # High score = higher certainty on decision 
+ 
+ #1a: Subset relevant columns
+
+  certain_dat <- cleaned_data[, c(1:2, 7:10, 17:20, 23)]
+
+  #1b: Reverse code Questions 5 and 8 for both Justin and Nate
+  certain_dat$Justin_Q5R <- 8 - certain_dat$Justin_Q5  # Reverse code for Justin's Q5
+  certain_dat$Justin_Q8R <- 8 - certain_dat$Justin_Q8  # Reverse code for Justin's Q8
+  certain_dat$Nate_Q5R <- 8 - certain_dat$Nate_Q5      # Reverse code for Nate's Q5
+  certain_dat$Nate_Q8R <- 8 - certain_dat$Nate_Q8      # Reverse code for Nate's Q8
+
+  #1c: Calculate combined certainty scores 
+  certain_eval_combined <- certain_dat %>%
+    mutate(
+      quick_justin_score = rowMeans(select(., Justin_Q5R, Justin_Q6, Justin_Q7, Justin_Q8R), na.rm = TRUE),
+      slow_nate_score = rowMeans(select(., Nate_Q5R, Nate_Q6, Nate_Q7, Nate_Q8R), na.rm = TRUE)
+    )
+
+### Step 2: Summarize Average Scores by Condition
+  
+  # Group data by condition for comparison of Justin's decision certainty evaluation and Nate's decision certainty evaluation across condition
+
+certain_eval_combined_stats <- certain_eval_combined %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+### Step 3: Reshape Data for ANOVA
+
+certain_eval_combined_long <- certain_eval_combined %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "speed",                           # Create a column for speed
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    speed = ifelse(speed == "quick_justin_score", "Justin", "Nate") # Relabel speed column
+  )  %>%
+  select(Participant_ID, condition, speed, score) # Keep only essential columns
+
+
+### Step 4: Run Repeated-Measures ANOVA
+
+anova_certain_combined <- aov(score ~ condition * speed + Error(Participant_ID/speed), data = certain_eval_combined_long)
+summary(anova_certain_combined)
+```
+
+### Visualization
+
+```{r}
+ggplot(certain_eval_combined_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Decision Certainty Evaluations (Combined Data)",
+    x = "Decision Speed (Justin / Nate)",    # Updated x-axis label
+    y = "Mean Score (Likert Scale)",         # Updated y-axis label
+    fill = "Moral Condition"                # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
+
+```
+
+## Post-Hoc Comparison of all three 2x2 Anova Tests
+
+### Post-Hoc Pairwise Comparisons on both Moral Character Evaluation & Decision Certainty Evaluation tests
+
+#### Moral Character Evaluation
+
+```{r}
+# Combined Data: post hoc pairwise comparisons using estimated marginal means
+posthoc_results <- emmeans(anova_combined, pairwise ~ condition * speed)
+print(posthoc_results)
+
+```
+
+```{r}
+# Group 3 Data: post hoc pairwise comparisons using estimated marginal means
+posthoc_group3_results <- emmeans(anova_group3, pairwise ~ condition * speed)
+print(posthoc_group3_results)
+```
+
+#### Decision Certainty Evaluation
+
+```{r}
+# Conduct post hoc pairwise comparisons using estimated marginal means
+posthoc_certain_results <- emmeans(anova_certain_combined, pairwise ~ condition * speed)
+print(posthoc_certain_results)
+```
+
+## Effect Size Calculation on both Moral Character Evaluation & Decision Certainty Evaluation tests
+
+#### Moral Character Evaluation
+
+```{r}
+# Combined Data
+# Refit the repeated measures model
+anova_combined_lmer <- lmer(
+  score ~ condition * speed + (1 | Participant_ID),
+  data = character_eval_combined_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_combined <- eta_squared(anova_combined_lmer, partial = TRUE)
+
+# Print results
+print(eta2_combined)
+```
+
+```{r}
+#Group 3 Data
+# Refit the repeated measures model
+anova_group3_lmer <- lmer(
+  score ~ condition * speed + (1 | Participant_ID),
+  data = character_eval_group3_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_group3 <- eta_squared(anova_group3_lmer, partial = TRUE)
+
+# Print results
+print(eta2_group3)
+```
+
+#### Decision Certainty Evaluation
+
+```{r}
+# Refit the repeated measures model
+anova_certain_combined_lmer <- lmer(
+  score ~ condition * speed + (1 | Participant_ID),
+  data = certain_eval_combined_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_certain_combined <- eta_squared(anova_certain_combined_lmer, partial = TRUE)
+
+# Print results
+print(eta2_certain_combined)
+```
+
+### Interpretation
+
+Did the result replicate? Think both about the key test result and the larger pattern of results (ex. If there were both main effects and interactions, or two dependent measures, etc) A brief commentary on why it might have turned out this way
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+
+### Commentary
+
+## Statement of Contributions
+
+**Asad Tariq**: Conceptualization, Formal Analysis, Software, Methodology, Investigation, Data Curation, Writing
+
+**Emily Han**: Conceptualization, Formal Analysis, Software, Methodology, Investigation, Data Curation, Writing
+
+**Erika Garza-Elorduy**: Conceptualization, Formal Analysis, Investigation, Project Administration, Data Visualization, Writing
+
+**Luna Bellitto**: Conceptualization, Formal Analysis, Investigation, Methodology, Project Administration, Writing
+
+**Janna Wennberg**: Data Curation

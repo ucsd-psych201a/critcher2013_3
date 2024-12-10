@@ -284,16 +284,22 @@ summary(anova_result)  # Display ANOVA results
 emmeans(anova_result, pairwise ~ condition * justin_fast_nate_slow)
 ```
 
-### Exploratory analyses
+### Interpretation
 
-Any follow-up analyses desired (not required).
+
+
 
 ## Discussion
 
+This replication attempt validates the original study’s conclusion that quick decisions amplify perceptions of moral clarity and character, while slower decisions moderate these evaluations. This suggests that people interpret decision speed as an indicator of conviction, influencing how moral character is judged in various contexts.
 
+Despite the successful replication, limitations include the use of an online sample via Prolific, which introduces variability compared to the original, in-person, university-based sample, and the simplified wallet scenario, which may not fully reflect the complexity of real-world moral dilemmas. Additionally, the experiment’s questions were verbose and highly similar, leading us to suspect—supported by variance tests—that participants were not fully reading and carefully weighing each question, which may have reduced the validity of the responses.
+
+Future research could build on these findings by examining diverse moral dilemmas (as done in Experiment 2 of the original study), cultural differences in moral judgments, and the role of contextual factors such as stress and external pressures.
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+Fortunately, the replication study conducted successfully reproduced the key findings of the original study: confirming that decision speed amplifies moral evaluations. As mentioned above, quick moral decisions were judged more favorably, while quick immoral decisions were judged more harshly, with slower decisions leading to mroe moderate evaluations. The experiment and analyses conducted adhered closely to the original methodology and extend its generalizability by recruiting a more diverse online participant sample. These results support the robustness of the original findings and highlight areas for further exploration: mainly investigating more complex scenarios and polishing question design to enhance data quality. Overall, this replication underscores the reliability of the original study’s findings and highlights the importance of replication for advancing psychological research.
 
 ### Commentary
+

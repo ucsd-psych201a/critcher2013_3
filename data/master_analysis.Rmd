@@ -18,7 +18,7 @@ This document serves as the master file for the data analysis of the replication
 
 This replication study is part of a series of replication projects conducted in **PSYCH 201a / CSS 204**. Three independent teams replicated the study. To strengthen the confirmatory analysis, we merged the datasets from all three teams. The analysis will be based on both the combined dataset and the individual datasets specific to this team.
 
--   **Team 1:** Conducted by Harley Clifton, Sara Hamidi, Prosperity Land, and Bella Mullen. [Link to repository: ](https://github.com/ucsd-psych201a/critcher2013_1)
+-   **Team 1:** Conducted by Harley Clifton, Sara Hamidi, Prosperity Land, and Isabella Mullen. [Link to repository: ](https://github.com/ucsd-psych201a/critcher2013_1)
 -   **Team 2:** Conducted by Caroline Porche, Mila Dutton, and Anthony Zavala. [Link to repository: ](https://github.com/ucsd-psych201a/critcher2013_2)
 -   **Team 3:** Conducted by the authors of this document: Luna Bellitto, Erika Garza-Elorduy, Emily Han, and Asad Tariq [Link to repository: ](https://github.com/ucsd-psych201a/critcher2013_3/tree/main)
 
