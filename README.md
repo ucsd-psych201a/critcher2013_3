@@ -11,7 +11,7 @@ The original study found that decision speed amplifies moral evaluations. Quick 
 - **`data/`**: Contains the combined dataset used for our analysis (`quick_decisions_combined.csv`).
 - **`original_paper/`**: Includes the original paper, references and supplementary materials related to the original study.
 - **`writeup/`**: Contains the main replication report and supplementary files, including:
-  - `master_write_up.qmd`: Quarto Markdown file for the full report, excluding personal Results and Discussion portion (each contributor has a personal report).
+  - `A_master_write_up.qmd`: Quarto Markdown file for the full report, excluding personal Results and Discussion portion (each contributor has a personal report).
   - `master_analysis.Rmd`: RMarkdown file for the full analysis.
 
 ## Data Collection
