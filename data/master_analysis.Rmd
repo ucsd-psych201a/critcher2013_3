@@ -10,7 +10,7 @@ date: "`r Sys.Date()`"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This document serves as the master file for data analysis of the replication study, *"How Quick Decisions Illuminate Moral Character."* The primary objective of this study is to closely mirror the methodology of the original research. Accordingly, the statistical analysis will replicate the 2x2 ANOVA used in the original study, enabling a direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction.
+This document serves as the master file for the data analysis of the replication study, *"How Quick Decisions Illuminate Moral Character."* The primary objective of this study is to closely mirror the methodology of the original research. As such, the statistical analysis will replicate the 2x2 ANOVA used in the original study, enabling a direct assessment of the main effects of decision speed and moral condition on moral character evaluations, as well as their interaction.
 
 ------------------------------------------------------------------------
 
@@ -31,7 +31,6 @@ This replication study is part of a series of replication projects conducted in 
     -   A 2 (moral condition) x 2 (decision speed) ANOVA will be conducted to compare group means for moral character evaluations, examining the main effects and interaction effects of both factors.
 
 2.  **Additional analyses will explore perceived certainty and emotional impulsivity as covariates, assessing how perceptions of these traits vary with decision speed.**\
-    *(Note: This section is still in progress and will be completed by the end of the week.)*
 
 ------------------------------------------------------------------------
 
