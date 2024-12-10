@@ -668,3 +668,149 @@ ggplot(character_eval_group3_long, aes(x = speed, y = score, fill = condition)) 
     expand = c(0, 0)   # No extra space above/below
   )
 ```
+
+# Exploratory Analysis
+
+
+**Objective** : The aim of this analysis is to perform a **2 (moral condition: moral vs. immoral) x 2 (decision speed: quick vs. slow)** repeated-measures ANOVA to compare group means for decision certainty evaluations of Justin and Nate.
+
+Items accounting for decision cetainity evaluation: 
+
+5. Would you say [name] was quite certain in his decision, or did [name] have hesitations about his decision? (1 = completely certain, 7 = considerable hesitations)
+6. How close do you think [name] was to choosing the alternate course of action? (1 = very close to, 7 = not close at all)
+7. How conflicted do you think [name] felt in making the decision? (1 = very conflicted, 7 = not at all conflicted)
+8. Based on the information provided, do you think [name] had many reservations about the decision? (1 = none at all, 7 = a whole lot)
+
+
+### Step 1: Calculate Average Scores for Justin and Nate
+
+Since Questions 5 & 8 are reverse scored, we need to reverse code those items before we proceed with further analysis  Reverse coding is performed on a 1-7 scale to align with the scoring direction. 
+
+High score = higher certainty on decision 
+
+```{r}
+# Step 1: Subset relevant columns
+
+certain_dat <- cleaned_data[, c(1:2, 7:10, 17:20, 23)]
+
+# Step 2: Reverse code Questions 5 and 8 for both Justin and Nate
+certain_dat$Justin_Q5R <- 8 - certain_dat$Justin_Q5  # Reverse code for Justin's Q5
+certain_dat$Justin_Q8R <- 8 - certain_dat$Justin_Q8  # Reverse code for Justin's Q8
+certain_dat$Nate_Q5R <- 8 - certain_dat$Nate_Q5      # Reverse code for Nate's Q5
+certain_dat$Nate_Q8R <- 8 - certain_dat$Nate_Q8      # Reverse code for Nate's Q8
+
+# Step 3: Calculate combined certainty scores 
+certain_eval_combined <- certain_dat %>%
+  mutate(
+    quick_justin_score = rowMeans(select(., Justin_Q5R, Justin_Q6, Justin_Q7, Justin_Q8R), na.rm = TRUE),
+    slow_nate_score = rowMeans(select(., Nate_Q5R, Nate_Q6, Nate_Q7, Nate_Q8R), na.rm = TRUE)
+  )
+
+
+```
+
+### Step 2: Summarize Average Scores by Condition
+
+Group data by condition for comparison of Justin's decision certainty evaluation and Nate's decision certainty evaluation across condition
+
+```{r}
+certain_eval_combined_stats <- certain_eval_combined %>%
+  group_by(condition) %>%  # Group data by the 'condition' column
+  summarize(
+    mean_justin = mean(quick_justin_score), # Mean of Justin's character evaluation
+    mean_nate = mean(slow_nate_score)     # Mean of Nate's character evaluation
+  )
+
+print(certain_eval_combined_stats)  # View summarized data
+```
+
+### Step 3: Reshape Data for ANOVA
+
+```{r}
+certain_eval_combined_long <- certain_eval_combined %>%
+  pivot_longer(
+    cols = c(quick_justin_score, slow_nate_score), # Select the new columns
+    names_to = "speed",                           # Create a column for speed
+    values_to = "score"                            # Create a column for scores
+  ) %>%
+  mutate(
+    speed = ifelse(speed == "quick_justin_score", "Justin", "Nate") # Relabel speed column
+  )  %>%
+  select(Participant_ID, condition, speed, score) # Keep only essential columns
+
+
+# View the reshaped data
+head(certain_eval_combined_long)
+```
+
+### Step 4: Run Repeated-Measures ANOVA
+
+```{r}
+anova_certain_combined <- aov(score ~ condition * speed + Error(Participant_ID/speed), data = certain_eval_combined_long)
+
+# View the summary
+summary(anova_certain_combined)
+```
+
+### Step 5: Conduct Post Hoc Pairwise Comparisons
+
+```{r}
+# Conduct post hoc pairwise comparisons using estimated marginal means
+posthoc_certain_results <- emmeans(anova_certain_combined, pairwise ~ condition * speed)
+
+print(posthoc_certain_results)
+
+```
+
+### Step 6: Compute the effect size
+
+```{r}
+# Refit the repeated measures model
+anova_certain_combined_lmer <- lmer(
+  score ~ condition * speed + (1 | Participant_ID),
+  data = certain_eval_combined_long
+)
+
+# Calculate partial eta-squared for the mixed-effects model
+eta2_certain_combined <- eta_squared(anova_certain_combined_lmer, partial = TRUE)
+
+# Print results
+print(eta2_certain_combined)
+```
+### Visualization
+
+**Note to Eri: Please look at step 2**
+
+```{r}
+ggplot(certain_eval_combined_long, aes(x = speed, y = score, fill = condition)) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean",
+    position = position_dodge(width = 0.6),  # Columns closer together
+    width = 0.5                             # Narrower columns
+  ) +
+  labs(
+    title = "Decision Certainty Evaluations (Combined Data)",
+    x = "Decision Speed (Justin / Nate)",    # Updated x-axis label
+    y = "Mean Score (Likert Scale)",         # Updated y-axis label
+    fill = "Moral Condition"                # Legend title for conditions
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Centered title
+    axis.text.x = element_text(size = 10),   # Adjust x-axis labels
+    axis.title.y = element_text(size = 12, margin = margin(r = 15)),  # Add spacing to y-axis title
+    axis.title.x = element_text(size = 12, margin = margin(t = 10))   # Add spacing to x-axis title
+  ) +
+  scale_fill_manual(
+    values = c("moral" = "#4F81BD", "immoral" = "#9DC3E6"),  # Two shades for moral/immoral
+    labels = c("moral" = "Moral", "immoral" = "Immoral")     # Custom legend labels
+  ) +
+  scale_y_continuous(
+    limits = c(0, 7),  # Y-axis limits for Likert scale
+    breaks = 1:7,      # Label y-axis by 1's
+    expand = c(0, 0)   # No extra space above/below
+  )
+
+```
