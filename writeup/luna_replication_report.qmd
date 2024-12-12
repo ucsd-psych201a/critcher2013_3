@@ -154,7 +154,7 @@ Our replication of Experiment 1 will closely mirror the original study’s 2x2 f
 
 #### Raw Data Processing
 
-```{r}
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
 #### Load necessary libraries
 library(tidyverse)
 library(dplyr)
@@ -701,15 +701,17 @@ print(posthoc_certain_results)
 
 ### Interpretation
 
-Did the result replicate? Think both about the key test result and the larger pattern of results (ex. If there were both main effects and interactions, or two dependent measures, etc) A brief commentary on why it might have turned out this way
+The manipulation check confirmed that participants recognized differences in decision speed between Justin (quick) and Nate (slow). This confirmation can be seen in both the moral and immoral scenarios. Moreover, the two-way ANOVA analysis was employed to assess the interaction between decision speed (quick vs slow) and decision type (moral vs immoral) on the evaluation of Justin and Nate’s moral character. This analysis showed a few results. For example, in both the combined dataset and the dataset from our group, we could find that moral condition has a significant effect on moral character evaluation, meaning that the action of stealing or returning the money has a strong influence on the moral evaluation of the two agents. Considering the speed of the decision without morality, we have different results for combining data and the dataset of our group. In the first instance, results show that the speed of a decision, regardless of the morality of that decision, does not affect how the agent is perceived. However, the dataset of our group shows that speed affects the evaluation of morality. Taking into account speed and morality, we have the same results for both the datasets. Justin, who took his decision quickly, was considered more moral than Nate, who took his decision slowly, when he was returning the money and more immoral when he was stealing it. 
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+The experiment was replicating Experiment 1 of the study "How Quick Decisions Illuminate Moral Character" by Critcher et al. (2013). The aim of the experiment was to explore if the speed of decision-making influences the perception of the moral character of the person taking the decision. Even if there were some differences in the procedure in conducting the experiment: sample size, division among groups, study conducted via Prolific, the methodology used reflected the original one. By conducting the experiment, we could see that the results were mainly replicated. Even if some results differ from the two datasets, overall, the experiment replicated, confirming the results found in the original experiment, so the influence that speed in decision making has on moral evaluation. 
 
 ### Commentary
+
+Besides some minor changes in the methodology, this experiment tried to replicate the original Experiment 1 by Critcher et al. The results show that, overall, the results are consistent with the findings of the original experiment, showing a successful replication.
 
 ## Statement of Contributions
 
